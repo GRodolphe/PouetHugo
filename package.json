@@ -2,8 +2,8 @@
     "name": "pouethugo",
     "private": true,
     "dependencies": {
-        "cross-spawn": "^7.0.5",
-        "hugo-extended": "^0.164.0"
+        "cross-spawn": "7.0.6",
+        "hugo-extended": "0.164.0"
     },
     "scripts": {
         "build": "node build.js",
