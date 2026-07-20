@@ -23,13 +23,24 @@ jobs:
           persist-credentials: false
       - name: Create archive
         run: git archive --format=tar.gz --prefix="pouethugo-${GITHUB_REF_NAME}/" -o "pouethugo-${GITHUB_REF_NAME}.tar.gz" "${GITHUB_REF_NAME}"
+      - name: Generate SBOM (CycloneDX)
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: pouethugo-${{ github.ref_name }}.cdx.json
+          upload-artifact: false
+          upload-release-assets: false
       - name: Compute subject hashes
         id: hash
-        run: echo "hashes=$(sha256sum pouethugo-*.tar.gz | base64 -w0)" >> "$GITHUB_OUTPUT"
+        # Provenance covers both the archive and the SBOM.
+        run: echo "hashes=$(sha256sum pouethugo-*.tar.gz pouethugo-*.cdx.json | base64 -w0)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: release-archive
-          path: pouethugo-*.tar.gz
+          path: |
+            pouethugo-*.tar.gz
+            pouethugo-*.cdx.json
           if-no-files-found: error
 
   release:
@@ -44,7 +55,9 @@ jobs:
           name: release-archive
       - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
-          files: pouethugo-*.tar.gz
+          files: |
+            pouethugo-*.tar.gz
+            pouethugo-*.cdx.json
           generate_release_notes: true
 
   provenance:

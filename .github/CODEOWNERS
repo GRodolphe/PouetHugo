@@ -1,0 +1,4 @@
+# Code owners are requested for review on every pull request and, with
+# branch protection's "require review from code owners" enabled, must
+# approve before merge. See GOVERNANCE.md.
+* @GRodolphe
