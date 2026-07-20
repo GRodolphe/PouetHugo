@@ -100,3 +100,5 @@ An unlisted easter-egg page (`noindex`, excluded from lists and sitemap) with a 
 - Use blockquotes for TL;DR blocks at the top of writeups.
 - Annotate taint traces in code blocks with `SOURCE` / `PROPAGATION` / `SINK` comments.
 - Short italic captions right under images.
+
+The full voice and structure conventions, including a section-by-section template for security writeups, are in the [writing guide](writing-guide.md).

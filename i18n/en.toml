@@ -129,7 +129,7 @@ other = "I break software, <span class=\"pixel\">politely,</span> and then I wri
 other = "I'm an application-security engineer and independent researcher. Day job: finding and fixing vulnerabilities. Off the clock: reading CVE feeds, reproducing bugs, building small tools, and publishing writeups here."
 
 [about_focus]
-other = "My focus is reachability — not just \"is this function vulnerable?\" but \"can anyone actually get there, and with what pre-conditions?\" Most of the interesting work in appsec lives in that gap between a lint rule firing and a bug a motivated attacker can land."
+other = "My focus is reachability - not just \"is this function vulnerable?\" but \"can anyone actually get there, and with what pre-conditions?\" Most of the interesting work in appsec lives in that gap between a lint rule firing and a bug a motivated attacker can land."
 
 [about_disclosure]
 other = "I disclose responsibly. 90-day timeline by default, extended on request when the fix is real."

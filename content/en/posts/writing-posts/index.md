@@ -29,7 +29,7 @@ The fields this post uses, and what they do:
 | `cve` | Renders a red CVE chip next to the title (for security writeups) |
 | `author` | Shown in the byline |
 
-## Code blocks
+## Code Blocks
 
 Language-tagged fences are highlighted with CSS classes (Catppuccin Mocha, in both light and dark mode). Ligatures are disabled so `===` and `!==` stay three characters:
 
@@ -69,6 +69,6 @@ Images in a page bundle are referenced by filename only. Click to zoom:
 
 *Italic caption right under the image, meme-style.*
 
-## The rest
+## The Rest
 
 Blockquotes, tables, and footnotes all work as usual. The reading-progress bar at the top of this page, the hover preview cards on internal links, and the Ctrl+K palette finding this post by fuzzy title match - all free.

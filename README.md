@@ -71,6 +71,7 @@ build.js          # Cloudflare Pages build helper
 | [Languages & i18n](docs/i18n.md) | How bilingual works, adding or removing a language |
 | [Features](docs/features.md) | Each feature: where it lives, how to customize or disable it |
 | [Theming](docs/theming.md) | Design tokens, fonts, syntax colors, logo |
+| [Writing guide](docs/writing-guide.md) | The voice and structure conventions the sample content follows |
 | [Deployment](docs/deployment.md) | Cloudflare Pages, GitHub Pages, the Hugo version-skew caveat |
 | [Design notes](docs/design.md) | Why things are the way they are |
 

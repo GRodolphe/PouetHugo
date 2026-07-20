@@ -129,7 +129,7 @@ other = "Je casse du logiciel, <span class=\"pixel\">poliment,</span> et ensuite
 other = "Je suis ingénieur en sécurité applicative et chercheur indépendant. Au quotidien : trouver et corriger des vulnérabilités. En dehors : lire les flux CVE, reproduire des bugs, créer des petits outils et publier des writeups ici."
 
 [about_focus]
-other = "Mon focus, c'est l'atteignabilité — pas juste \"est-ce que cette fonction est vulnérable ?\" mais \"est-ce que quelqu'un peut vraiment y arriver, et avec quelles pré-conditions ?\" L'essentiel du travail intéressant en appsec se situe dans cet écart entre un lint qui se déclenche et un bug qu'un attaquant motivé peut exploiter."
+other = "Mon focus, c'est l'atteignabilité - pas juste \"est-ce que cette fonction est vulnérable ?\" mais \"est-ce que quelqu'un peut vraiment y arriver, et avec quelles pré-conditions ?\" L'essentiel du travail intéressant en appsec se situe dans cet écart entre un lint qui se déclenche et un bug qu'un attaquant motivé peut exploiter."
 
 [about_disclosure]
 other = "Je divulgue de manière responsable. Délai de 90 jours par défaut, prolongé sur demande quand le correctif est réel."
