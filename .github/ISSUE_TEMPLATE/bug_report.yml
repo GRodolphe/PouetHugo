@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in the template is broken or behaves unexpectedly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Not a security vulnerability? Good. If it is one, stop and follow [SECURITY.md](https://github.com/GRodolphe/PouetHugo/blob/main/SECURITY.md) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What went wrong, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The smaller the repro, the faster the fix.
+      placeholder: |
+        1. hugo server -D
+        2. Go to ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: hugo-version
+    attributes:
+      label: Hugo version
+      description: Output of `hugo version` (extended build, ideally 0.139+).
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser / OS
+      description: Where you saw it, if relevant (e.g. Firefox 140 on Linux).
+    validations:
+      required: false

@@ -1,0 +1,10 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/GRodolphe/PouetHugo/blob/main/docs/vex.openvex.json",
+  "author": "PouetHugo maintainers",
+  "role": "Project maintainer",
+  "timestamp": "2026-07-20T00:00:00Z",
+  "version": 1,
+  "tooling": "Hand-authored VEX statement",
+  "statements": []
+}

@@ -1,0 +1,123 @@
+header:
+  schema-version: 2.2.0
+  last-updated: '2026-07-20'
+  last-reviewed: '2026-07-20'
+  url: https://github.com/GRodolphe/PouetHugo/blob/main/SECURITY-INSIGHTS.yml
+  comment: |
+    Machine-readable security metadata for the PouetHugo template,
+    following the OpenSSF Security Insights spec. Supports OSPS Baseline
+    conformance; see docs/osps-baseline.md.
+
+project:
+  name: PouetHugo
+  homepage: https://github.com/GRodolphe/PouetHugo
+  administrators:
+    - name: Rodolphe G
+      affiliation: PouetHugo
+      social: https://github.com/GRodolphe
+      primary: true
+  documentation:
+    quickstart-guide: https://github.com/GRodolphe/PouetHugo/blob/main/docs/getting-started.md
+    detailed-guide: https://github.com/GRodolphe/PouetHugo/tree/main/docs
+    code-of-conduct: https://github.com/GRodolphe/PouetHugo/blob/main/CODE_OF_CONDUCT.md
+    release-process: https://github.com/GRodolphe/PouetHugo/blob/main/docs/deployment.md
+    support-policy: https://github.com/GRodolphe/PouetHugo/blob/main/SUPPORT.md
+    signature-verification: https://github.com/GRodolphe/PouetHugo/blob/main/SECURITY.md
+  repositories:
+    - name: PouetHugo
+      url: https://github.com/GRodolphe/PouetHugo
+      comment: |
+        The template repository. There are no subprojects.
+  vulnerability-reporting:
+    reports-accepted: true
+    bug-bounty-available: false
+    contact:
+      name: PouetHugo maintainers
+      primary: true
+    policy: https://github.com/GRodolphe/PouetHugo/blob/main/SECURITY.md
+    comment: |
+      Report privately via GitHub private vulnerability reporting. 90-day
+      coordinated disclosure; see SECURITY.md.
+
+repository:
+  url: https://github.com/GRodolphe/PouetHugo
+  status: active
+  bug-fixes-only: false
+  accepts-change-request: true
+  accepts-automated-change-request: true
+  no-third-party-packages: false
+  core-team:
+    - name: Rodolphe G
+      affiliation: PouetHugo
+      social: https://github.com/GRodolphe
+      primary: true
+  documentation:
+    contributing-guide: https://github.com/GRodolphe/PouetHugo/blob/main/CONTRIBUTING.md
+    review-policy: https://github.com/GRodolphe/PouetHugo/blob/main/GOVERNANCE.md
+    security-policy: https://github.com/GRodolphe/PouetHugo/blob/main/SECURITY.md
+    governance: https://github.com/GRodolphe/PouetHugo/blob/main/GOVERNANCE.md
+    dependency-management-policy: https://github.com/GRodolphe/PouetHugo/blob/main/docs/dependencies.md
+  license:
+    url: https://github.com/GRodolphe/PouetHugo/blob/main/LICENSE
+    expression: MIT
+  release:
+    changelog: https://github.com/GRodolphe/PouetHugo/blob/main/CHANGELOG.md
+    automated-pipeline: true
+    attestations:
+      - name: Release SLSA provenance
+        predicate-uri: https://slsa.dev/provenance/v1
+        location: https://github.com/GRodolphe/PouetHugo/releases
+        comment: |
+          Every release asset ships SLSA Build L3 provenance
+          (*.intoto.jsonl) from slsa-github-generator.
+      - name: Release SBOM
+        predicate-uri: https://cyclonedx.org/bom
+        location: https://github.com/GRodolphe/PouetHugo/releases
+        comment: |
+          CycloneDX SBOM attached to each release.
+    distribution-points:
+      - uri: https://github.com/GRodolphe/PouetHugo/releases
+        comment: GitHub release page
+    license:
+      url: https://github.com/GRodolphe/PouetHugo/blob/main/LICENSE
+      expression: MIT
+  security:
+    assessments:
+      self:
+        evidence: https://github.com/GRodolphe/PouetHugo/blob/main/docs/security-model.md
+        date: '2026-07-20'
+        comment: |
+          Maintainer self-assessment: actors and interfaces, security
+          assessment, and threat model / attack surface analysis.
+    tools:
+      - name: CodeQL
+        type: SAST
+        rulesets:
+          - default
+        integration:
+          adhoc: false
+          ci: true
+          release: false
+        comment: |
+          Runs on every pull request and on the default branch.
+      - name: Dependabot
+        type: SCA
+        rulesets:
+          - default
+        integration:
+          adhoc: true
+          ci: true
+          release: false
+        comment: |
+          Version updates plus security advisories for npm and GitHub
+          Actions. PRs are gated by the dependency-review workflow.
+      - name: OpenSSF Scorecard
+        type: SAST
+        rulesets:
+          - default
+        integration:
+          adhoc: false
+          ci: true
+          release: false
+        comment: |
+          Weekly and on push to the default branch; results published.
