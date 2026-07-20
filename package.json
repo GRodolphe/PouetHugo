@@ -5,6 +5,9 @@
         "cross-spawn": "7.0.6",
         "hugo-extended": "0.164.0"
     },
+    "overrides": {
+        "adm-zip": "^0.6.0"
+    },
     "scripts": {
         "build": "node build.js",
         "server": "hugo server -D",
