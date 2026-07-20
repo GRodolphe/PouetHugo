@@ -4,7 +4,8 @@
 {{- $index := slice -}}
 {{- range .Site.RegularPages -}}
 {{- if .Params.noindex -}}{{- continue -}}{{- end -}}
-{{- $summary := (.Description | default .Summary) | plainify | htmlUnescape | truncate 180 -}}
+{{- /* truncate HTML-escapes its input, so htmlUnescape must come after it. */ -}}
+{{- $summary := (.Description | default .Summary) | plainify | truncate 180 | htmlUnescape -}}
 {{- $index = $index | append (dict
     "title" .Title
     "url" .RelPermalink

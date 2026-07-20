@@ -42,7 +42,7 @@ The `json` output is the search index (`/index.json`, one per language) consumed
 | `github` | Footer "elsewhere" link + about page. Remove the key to hide both |
 | `linkedin` | About page link (LinkedIn slug, not URL). Remove to hide |
 | `avatar` | About-page portrait. Defaults to `params.logo` |
-| `website` | Informational; not currently rendered |
+| `website` | Author URL in the JSON-LD structured data (Person / article author) |
 
 ## Languages and menus
 

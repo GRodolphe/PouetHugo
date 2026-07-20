@@ -10,6 +10,10 @@ A bilingual (EN + FR) Hugo blog template for technical writing and security rese
 
 Dark terminal aesthetic, quiet red accents, and a feature set aimed at people who write about code: annotated code blocks, mermaid diagrams, a CVE tracker, an inline PDF slides viewer, and a Ctrl+K command palette.
 
+| Dark | Light |
+|---|---|
+| ![Homepage, dark mode](docs/img/screenshot-dark.png) | ![Homepage, light mode](docs/img/screenshot-light.png) |
+
 ## Features
 
 - **Bilingual by construction** - separate `content/en` and `content/fr` trees, per-language menus and UI strings, hreflang alternates, one-click language switch. Going monolingual is a deletion, not a refactor.

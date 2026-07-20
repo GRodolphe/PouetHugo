@@ -71,11 +71,25 @@ The thin bar under the nav (`#reading-progress`) tracks scroll position on post 
 
 Prints an ASCII banner and the `egg_message` i18n string to the console, once per session. Empty `egg_message` = disabled.
 
+## Social cards (og:image)
+
+`layouts/partials/og-card.html`, `assets/img/og-base.png`, `assets/fonts/JetBrainsMono-*.ttf`
+
+Every page gets a 1200x630 social card generated at build time: the title (wrapped, max 4 lines), date and site title, and the domain from `baseURL` drawn onto `og-base.png` with `images.Text`. A post can override it with `ogimage: "my-card.png"` frontmatter pointing at a bundle image.
+
+One gotcha, documented in the partial itself: don't add `images` frontmatter or bundle images matching Hugo's cover/feature/thumbnail patterns, or Hugo's internal opengraph template will emit a second `og:image` alongside the generated one.
+
+## Structured data (JSON-LD)
+
+`layouts/partials/jsonld.html`
+
+Emits `WebSite` on the home pages, `BlogPosting` (with author, keywords, and the social-card image) on posts, and `Person` (from `params.author`) on the about pages. Nothing on other pages.
+
 ## RSS + SEO
 
 - RSS per language at `/index.xml` and `/fr/index.xml`.
 - Canonical URLs, `hreflang` alternates, `x-default`, OpenGraph tags, `robots.txt`, sitemap, custom 404 (per language).
-- `noindex: true` frontmatter opts a page out of indexing.
+- `noindex: true` frontmatter opts a page out of indexing and the search index.
 
 ## Analytics
 

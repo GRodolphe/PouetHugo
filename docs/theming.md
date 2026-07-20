@@ -38,6 +38,10 @@ then re-add the `.chroma` block padding/radius from the top of the current file.
 
 `static/img/logo.svg` drives the nav, footer, favicon, and about-page portrait (all four are params, so they can diverge - see [configuration.md](configuration.md)). The brand mark text next to the logo is `title` + `brandSuffix` from `hugo.toml`; the suffix renders in brand red via the `.bang` class.
 
+## The social card
+
+The og:image background is `themes/pouet/assets/img/og-base.png` (dark panel, red left bar and bottom rule, no text - the title, date, and domain are drawn at build time). Replace the PNG to restyle it; text positions and colors live in `layouts/partials/og-card.html`. The bundled JetBrains Mono TTFs under `assets/fonts/` exist only for this build-time rendering (browser fonts still come from Google Fonts) and are licensed under the OFL (`assets/fonts/OFL.txt`).
+
 ## The console banner
 
 The ASCII art in `themes/pouet/assets/js/egg.js` spells "pouet!". If you rebrand, regenerate yours with any figlet-style tool and keep the string array shape.

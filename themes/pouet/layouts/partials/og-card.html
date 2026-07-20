@@ -1,0 +1,54 @@
+{{- /* Build-time OG card. Returns an image resource: the page's own
+      `ogimage` bundle resource when set in front matter, else a card
+      generated from og-base.png with the title drawn via images.Text
+      (Hugo >= 0.90; prod runs 0.139). Returns "" when assets missing.
+      NOTE: do not add `images` front matter or bundle images (cover,
+      feature, thumbnail patterns) to posts - Hugo's internal opengraph
+      template would then emit a second og:image alongside this one. */ -}}
+{{- $out := "" -}}
+{{- with .Params.ogimage -}}
+  {{- with $.Resources.GetMatch . -}}
+    {{- if eq .ResourceType "image" -}}{{- $out = . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $out -}}
+  {{- $base := resources.Get "img/og-base.png" -}}
+  {{- $font := resources.Get "fonts/JetBrainsMono-Bold.ttf" -}}
+  {{- if and $base $font -}}
+    {{- $title := .Title -}}
+    {{- if .IsHome -}}{{- $title = printf "%s - %s" .Site.Title .Site.Params.subtitle -}}{{- end -}}
+    {{- /* Manual wrap at 26 chars/line (mono, 60px), max 4 lines. */ -}}
+    {{- $lines := slice -}}
+    {{- $cur := "" -}}
+    {{- range split $title " " -}}
+      {{- if and $cur (gt (add (len $cur) (add (len .) 1)) 26) -}}
+        {{- $lines = $lines | append $cur -}}
+        {{- $cur = . -}}
+      {{- else -}}
+        {{- $cur = trim (printf "%s %s" $cur .) " " -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $cur -}}{{- $lines = $lines | append $cur -}}{{- end -}}
+    {{- if gt (len $lines) 4 -}}{{- $lines = first 4 $lines -}}{{- end -}}
+    {{- $clipped := slice -}}
+    {{- range $lines -}}
+      {{- if gt (len .) 26 -}}
+        {{- $clipped = $clipped | append (printf "%s..." (substr . 0 23)) -}}
+      {{- else -}}
+        {{- $clipped = $clipped | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $lines = $clipped -}}
+    {{- $text := delimit $lines "\n" -}}
+    {{- $meta := .Site.Title -}}
+    {{- if not .Date.IsZero -}}{{- $meta = printf "%s · %s" (.Date.Format "2006.01.02") .Site.Title -}}{{- end -}}
+    {{- /* Domain line drawn from baseURL so the base image stays generic. */ -}}
+    {{- $host := (urls.Parse .Site.BaseURL).Host -}}
+    {{- $fontReg := resources.Get "fonts/JetBrainsMono-Regular.ttf" | default $font -}}
+    {{- $out = $base.Filter
+        (images.Text $text (dict "font" $font "color" "#F2F4F5" "size" 60 "x" 84 "y" 140 "linespacing" 16))
+        (images.Text $meta (dict "font" $font "color" "#FF6B84" "size" 30 "x" 84 "y" 500))
+        (images.Text $host (dict "font" $fontReg "color" "#9AA2A8" "size" 26 "x" 84 "y" 560)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

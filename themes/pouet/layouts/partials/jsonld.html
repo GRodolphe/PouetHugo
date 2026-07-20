@@ -1,0 +1,36 @@
+{{- /* JSON-LD: WebSite on home, BlogPosting on posts, Person on about.
+      Other pages: nothing. */ -}}
+{{- $ld := dict -}}
+{{- if .IsHome -}}
+  {{- $ld = dict
+      "@context" "https://schema.org"
+      "@type" "WebSite"
+      "name" .Site.Title
+      "url" .Permalink
+      "description" .Site.Params.description
+      "inLanguage" .Site.Language.Lang -}}
+{{- else if and .IsPage (eq .Section "posts") -}}
+  {{- $ld = dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" .Title
+      "url" .Permalink
+      "datePublished" (.Date.Format "2006-01-02")
+      "dateModified" (.Lastmod.Format "2006-01-02")
+      "inLanguage" .Site.Language.Lang
+      "description" (or .Description (.Summary | plainify | truncate 160))
+      "keywords" (delimit (.Params.tags | default slice) ", ")
+      "author" (dict "@type" "Person" "name" .Site.Params.author.name "url" (printf "https://%s" .Site.Params.author.website)) -}}
+  {{- $card := partial "og-card.html" . -}}
+  {{- with $card -}}{{- $ld = merge $ld (dict "image" .Permalink) -}}{{- end -}}
+{{- else if in (slice "/about/" "/fr/about/") .RelPermalink -}}
+  {{- $ld = dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" .Site.Params.author.name
+      "url" (printf "https://%s" .Site.Params.author.website)
+      "sameAs" (slice (printf "https://github.com/%s" .Site.Params.author.github)) -}}
+{{- end -}}
+{{- with $ld -}}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end -}}
