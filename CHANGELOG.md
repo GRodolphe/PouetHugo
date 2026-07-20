@@ -4,6 +4,9 @@ All notable changes to this template are documented here. The format is based on
 
 ## [Unreleased]
 
+### Security
+- Force `adm-zip` to `^0.6.0` via an npm override, remediating GHSA-xcpc-8h2w-3j85 (high) in a transitive build-time dependency of `hugo-extended`.
+
 ### Added
 - OSPS Baseline compliance: governance, contribution, support, and security process documentation (`GOVERNANCE.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `CHANGELOG.md`, `CODEOWNERS`, issue and pull request templates).
 - `SECURITY-INSIGHTS.yml` (OpenSSF Security Insights 2.2.0) with machine-readable security metadata.
