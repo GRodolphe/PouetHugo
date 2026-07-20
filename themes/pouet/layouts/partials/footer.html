@@ -1,0 +1,37 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand">
+        <img src="{{ .Site.Params.logo | default "img/logo.svg" | relURL }}" alt="">
+        <span>{{ .Site.Title }}<span class="bang">{{ .Site.Params.brandSuffix | default "!" }}</span></span>
+      </div>
+      <p class="footer-tagline">{{ i18n "footer_tagline" }}</p>
+    </div>
+    <div>
+      <h4>{{ i18n "footer_site" }}</h4>
+      <div class="footer-list">
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+        {{ end }}
+      </div>
+    </div>
+    <div>
+      <h4>{{ i18n "footer_elsewhere" }}</h4>
+      <div class="footer-list">
+        {{ with .Site.Params.author.github }}<a href="https://github.com/{{ . }}" data-tooltip="{{ i18n "tooltip_github" }}">github.com/{{ . }}</a>{{ end }}
+        <a href="{{ "/index.xml" | relLangURL }}" data-tooltip="{{ i18n "tooltip_rss" }}">rss / atom</a>
+      </div>
+    </div>
+    <div>
+      <h4>{{ i18n "footer_contact" }}</h4>
+      <div class="footer-list">
+        {{ with .Site.Params.author.email }}<a href="mailto:{{ . }}" data-tooltip="{{ i18n "tooltip_email" }}">{{ . }}</a>{{ end }}
+      </div>
+      <p class="footer-tagline" style="margin-top:18px">{{ i18n "footer_disclosure" }}</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; {{ now.Year }} {{ .Site.Params.author.handle | default .Site.Params.author.name }}</span>
+    <span>{{ i18n "footer_built" }}</span>
+  </div>
+</footer>

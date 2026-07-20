@@ -1,0 +1,2 @@
+{{ $mermaid := resources.Get "js/mermaid-init.js" | minify | fingerprint }}
+<script type="module" src="{{ $mermaid.RelPermalink }}"></script>

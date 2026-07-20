@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="wrap-sm post-panel">
+  <section class="post-head" data-animate="reveal-children">
+    <div class="kicker" data-animate="reveal-child">
+      {{ with .Params.postKind }}{{ . }}{{ end }}{{ with .Params.cve }} &middot; {{ . }}{{ end }}
+    </div>
+    <h1 data-animate="reveal-child">{{ .Title }}</h1>
+    <div class="byline" data-animate="reveal-child">
+      <span>{{ .Date.Format "2006.01.02" }}</span>
+      <span>&middot;</span>
+      <span>{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min_read" }}</span>
+      {{ with .Params.cve }}
+      <span>&middot;</span>
+      <span style="color: var(--brand-red)">{{ . }}</span>
+      {{ end }}
+      {{ with .Params.tags }}
+      <span>&middot;</span>
+      <span>{{ i18n "tags" }}: {{ delimit . ", " }}</span>
+      {{ end }}
+      {{ with .Params.author }}
+      <span>&middot;</span>
+      <span>{{ . }}</span>
+      {{ end }}
+    </div>
+  </section>
+
+  <article class="post-body">
+    {{ .Content }}
+  </article>
+
+  <!-- Post navigation -->
+  <nav class="post-nav">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}">
+      <div class="eyebrow" style="margin-bottom: 8px;">&larr; {{ i18n "older" }}</div>
+      <div class="nav-title">{{ .Title }}</div>
+    </a>
+    {{ else }}
+    <div></div>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" style="text-align: right;">
+      <div class="eyebrow" style="margin-bottom: 8px;">{{ i18n "newer" }} &rarr;</div>
+      <div class="nav-title">{{ .Title }}</div>
+    </a>
+    {{ else }}
+    <div></div>
+    {{ end }}
+  </nav>
+</div>
+{{ end }}

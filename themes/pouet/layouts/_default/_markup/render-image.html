@@ -1,0 +1,1 @@
+<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if strings.Contains .Destination "memes/" }} class="meme"{{ end }} loading="lazy">

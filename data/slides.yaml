@@ -1,0 +1,10 @@
+# Slide decks, rendered on /slides/ with an inline PDF viewer.
+# Fields: title, description, date, kind (talk | rump | lecture ...),
+# lang (en | fr), file (PDF filename under static/slides/).
+
+- title: "Sample deck"
+  description: "A placeholder one-page deck so the slides page has something to render. Replace it with your own PDFs."
+  date: "2026-07-20"
+  kind: "talk"
+  lang: "en"
+  file: "sample.pdf"

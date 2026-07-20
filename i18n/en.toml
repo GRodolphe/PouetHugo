@@ -1,0 +1,294 @@
+# Navigation & common
+[subscribe]
+other = "Subscribe"
+
+[menu_open]
+other = "Open menu"
+
+[menu_close]
+other = "Close menu"
+
+[menu_label]
+other = "Menu"
+
+# Post list
+[all]
+other = "all"
+
+[posts_hero]
+other = "Everything I've <span class=\"pixel\">published,</span><br>in one feed."
+
+[posts_lede]
+other = "posts across writeups, research, and technical deep-dives. Filter by tag."
+
+[posts]
+other = "posts"
+
+[post]
+one = "post"
+other = "posts"
+
+[min_read]
+other = "min read"
+
+[older]
+other = "older"
+
+[newer]
+other = "newer"
+
+[tags]
+other = "tags"
+
+# Archives
+[archives_eyebrow]
+other = "archives · by year"
+
+[archives_hero]
+other = "Everything, in <span class=\"pixel\">chronological</span> order."
+
+[archives_lede]
+other = "A full index of published work. Grouped by year, sorted newest first."
+
+[jump_to]
+other = "jump to"
+
+[totals]
+other = "totals"
+
+[all_posts]
+other = "all posts"
+
+# CVE
+[cve_eyebrow]
+other = "cve · tracker"
+
+[cve_hero]
+other = "Known <span class=\"pixel\">vulnerabilities</span>, tracked."
+
+[cve_lede]
+other = "A chronological index of CVEs I've researched or encountered. Sorted newest first."
+
+[all_cves]
+other = "all CVEs"
+
+[critical]
+other = "critical"
+
+[high]
+other = "high"
+
+[medium]
+other = "medium"
+
+[low]
+other = "low"
+
+# Slides
+[slides_eyebrow]
+other = "slides · talks"
+
+[slides_hero]
+other = "<span class=\"pixel\">Talks</span> & presentations."
+
+[slides_lede]
+other = "Conference talks, rump sessions, and lecture materials. Click to view inline."
+
+[kind]
+other = "kind"
+
+[lang]
+other = "lang"
+
+[sort]
+other = "sort"
+
+[newest]
+other = "newest"
+
+[oldest]
+other = "oldest"
+
+[view_slides]
+other = "View slides"
+
+[loading]
+other = "Loading…"
+
+[failed_pdf]
+other = "Failed to load PDF."
+
+# About
+[about_eyebrow]
+other = "hi · this is me"
+
+[about_hero]
+other = "I break software, <span class=\"pixel\">politely,</span> and then I write it up."
+
+[about_lede]
+other = "I'm an application-security engineer and independent researcher. Day job: finding and fixing vulnerabilities. Off the clock: reading CVE feeds, reproducing bugs, building small tools, and publishing writeups here."
+
+[about_focus]
+other = "My focus is reachability — not just \"is this function vulnerable?\" but \"can anyone actually get there, and with what pre-conditions?\" Most of the interesting work in appsec lives in that gap between a lint rule firing and a bug a motivated attacker can land."
+
+[about_disclosure]
+other = "I disclose responsibly. 90-day timeline by default, extended on request when the fix is real."
+
+[about_writes]
+other = "What I write about"
+
+[about_writes_body]
+other = "Vuln writeups (with repros), research on how classes of bugs behave in the wild, tool launches, and the occasional essay about how this craft actually works."
+
+[about_contact]
+other = "Contact"
+
+[about_contact_body]
+other = "for anything."
+
+[about_based]
+other = "France"
+
+[about_focus_label]
+other = "AppSec"
+
+# Footer
+[footer_site]
+other = "Site"
+
+[footer_elsewhere]
+other = "Elsewhere"
+
+[footer_contact]
+other = "Contact"
+
+[footer_tagline]
+other = "Application security research, writeups, and small tools."
+
+[footer_disclosure]
+other = "Responsible disclosure welcome."
+
+[footer_built]
+other = "built with hugo and quiet red accents"
+
+# Homepage
+[hero_status]
+other = "currently · reading CVEs with coffee"
+
+[hero_eyebrow]
+other = "application security · independent research"
+
+[hero_title]
+other = "Reachable code,<br><span class=\"pixel\">exploitable</span> paths,<br><span class=\"serif\">and the notes I take along the way.</span>"
+
+[hero_body]
+other = "An appsec engineer's notebook. This is where I write up vulnerabilities I've found, publish small tools, and think out loud about how modern software actually breaks."
+
+[hero_cta_posts]
+other = "Read recent posts"
+
+[hero_cta_about]
+other = "About me"
+
+[featured_eyebrow]
+other = "featured · long read"
+
+[featured_title]
+other = "The piece I'd start with."
+
+[all_posts_link]
+other = "all posts"
+
+[latest_eyebrow]
+other = "latest · all kinds"
+
+[latest_title]
+other = "Recent posts."
+
+[archive_link]
+other = "archive"
+
+[subscribe_eyebrow]
+other = "subscribe · no spam, no tracking"
+
+[subscribe_title]
+other = "New posts, straight to your inbox."
+
+[subscribe_body]
+other = "About one email per month. Unsubscribe takes one click."
+
+[rss_feed]
+other = "RSS Feed"
+
+[read_post]
+other = "Read the post"
+
+[min]
+other = "min"
+
+# Links
+[links_eyebrow]
+other = "links · curated"
+
+[links_hero]
+other = "Things worth <span class=\"pixel\">reading</span>."
+
+[links_lede]
+other = "External articles, talks, and tools I keep coming back to. Filter by tag."
+
+[links_count]
+other = "links"
+
+[links_match]
+other = "match"
+
+[links_any]
+other = "any"
+
+[links_all]
+other = "all"
+
+# Cursor tooltips
+[tooltip_theme_to_dark]
+other = "let there be dark"
+
+[tooltip_theme_to_light]
+other = "let there be light"
+
+[tooltip_lang]
+other = "en français ?"
+
+[tooltip_github]
+other = "where the code lives"
+
+[tooltip_rss]
+other = "no algorithm, just posts"
+
+[tooltip_email]
+other = "inbox is open"
+
+# Command palette
+[search_label]
+other = "Search"
+
+[tooltip_search]
+other = "ctrl+k, or just click"
+
+[palette_placeholder]
+other = "type to search…"
+
+[palette_empty]
+other = "no matches"
+
+[palette_unavailable]
+other = "index unavailable"
+
+[cmd_theme]
+other = "toggle theme"
+
+[cmd_lang]
+other = "lire en français"
+
+# Console easter egg. Empty string = no console message at all.
+[egg_message]
+other = "Ah, someone who looks under the hood. This site runs on PouetHugo - https://github.com/GRodolphe/PouetHugo"

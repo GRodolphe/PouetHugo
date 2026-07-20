@@ -1,0 +1,18 @@
+{{- /* Ctrl+K command palette. Native <dialog> styled as a terminal;
+       palette.js drives it. The <template> holds static command entries
+       the JS merges into search results. */ -}}
+<dialog id="palette" class="palette" aria-label="{{ i18n "search_label" }}">
+  <div class="palette-prompt">
+    <span class="palette-glyph">&gt;_</span>
+    <input id="palette-input" type="text" placeholder="{{ i18n "palette_placeholder" }}"
+           autocomplete="off" spellcheck="false" aria-label="{{ i18n "search_label" }}">
+    <kbd>esc</kbd>
+  </div>
+  <ul id="palette-results" class="palette-results"
+      data-msg-empty="{{ i18n "palette_empty" }}"
+      data-msg-unavailable="{{ i18n "palette_unavailable" }}"></ul>
+  <template id="palette-commands">
+    <li data-cmd="theme">{{ i18n "cmd_theme" }}</li>
+    <li data-cmd="lang">{{ i18n "cmd_lang" }}</li>
+  </template>
+</dialog>

@@ -1,0 +1,199 @@
+<script type="module">
+let pdfjsPromise = null;
+function loadPdfjs() {
+  pdfjsPromise = pdfjsPromise || import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.mjs')
+    .then(function(m) {
+      m.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs';
+      return m;
+    })
+    .catch(function(e) {
+      pdfjsPromise = null;
+      throw e;
+    });
+  return pdfjsPromise;
+}
+
+function openModal(pdfUrl, title) {
+  var modal = document.createElement('div');
+  modal.className = 'slide-modal';
+  modal.innerHTML =
+    '<div class="slide-modal-head">' +
+      '<span class="slide-modal-title"></span>' +
+      '<div class="slide-modal-controls">' +
+        '<button class="slide-modal-btn" data-action="prev" disabled>&#8592;</button>' +
+        '<span class="slide-modal-pages">&mdash;</span>' +
+        '<button class="slide-modal-btn" data-action="next" disabled>&#8594;</button>' +
+        '<a class="slide-modal-btn" data-action="download" target="_blank" rel="noopener noreferrer" title="Download PDF">&#8595;</a>' +
+        '<button class="slide-modal-btn slide-modal-close" data-action="close">&times;</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="slide-modal-body">' +
+      '<div class="slide-modal-loading">{{ i18n "loading" }}</div>' +
+      '<div class="slide-canvas-wrap">' +
+        '<canvas class="slide-modal-canvas"></canvas>' +
+        '<div class="slide-zone slide-zone-prev">&#8592;</div>' +
+        '<div class="slide-zone slide-zone-next">&#8594;</div>' +
+      '</div>' +
+    '</div>';
+
+  modal.querySelector('.slide-modal-title').textContent = title;
+  modal.querySelector('[data-action="download"]').href = pdfUrl;
+
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  var canvas   = modal.querySelector('.slide-modal-canvas');
+  var ctx      = canvas.getContext('2d');
+  var loading  = modal.querySelector('.slide-modal-loading');
+  var pages    = modal.querySelector('.slide-modal-pages');
+  var prevBtn  = modal.querySelector('[data-action="prev"]');
+  var nextBtn  = modal.querySelector('[data-action="next"]');
+  var closeBtn = modal.querySelector('[data-action="close"]');
+  var prevZone = modal.querySelector('.slide-zone-prev');
+  var nextZone = modal.querySelector('.slide-zone-next');
+
+  var currentPage = 1;
+  var pdf = null;
+  var rendering = false;
+  var pending = null;
+  var dpr = window.devicePixelRatio || 1;
+
+  function close() {
+    document.body.removeChild(modal);
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+  }
+
+  function goTo(target) {
+    if (!pdf) return;
+    target = Math.max(1, Math.min(target, pdf.numPages));
+    if (rendering) { pending = target; return; }
+    render(target);
+  }
+
+  async function render(num) {
+    if (rendering) return;
+    rendering = true;
+    try {
+      var page = await pdf.getPage(num);
+      var vp   = page.getViewport({ scale: 1 });
+      var body = modal.querySelector('.slide-modal-body');
+      var availW = body.clientWidth  - 48;
+      var availH = body.clientHeight - 48;
+      var scale  = Math.min(availW / vp.width, availH / vp.height) * dpr;
+      var sv     = page.getViewport({ scale });
+
+      canvas.width  = sv.width;
+      canvas.height = sv.height;
+      canvas.style.width  = (sv.width  / dpr) + 'px';
+      canvas.style.height = (sv.height / dpr) + 'px';
+
+      await page.render({ canvasContext: ctx, viewport: sv }).promise;
+      // Commit only after a successful draw, so a failed render leaves
+      // currentPage pointing at the page actually on screen.
+      currentPage = num;
+      pages.textContent          = num + ' / ' + pdf.numPages;
+      prevBtn.disabled           = num <= 1;
+      nextBtn.disabled           = num >= pdf.numPages;
+      prevZone.style.display     = num <= 1 ? 'none' : '';
+      nextZone.style.display     = num >= pdf.numPages ? 'none' : '';
+    } catch (e) {
+      console.error('[slides]', e);
+      loading.textContent = '{{ i18n "failed_pdf" }}';
+      loading.style.display = '';
+    } finally {
+      rendering = false;
+      if (pending !== null) {
+        var next = pending;
+        pending = null;
+        if (next !== num) goTo(next);
+      }
+    }
+  }
+
+  async function init() {
+    try {
+      var pdfjsLib = await loadPdfjs();
+      pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+    } catch (e) {
+      console.error('[slides]', e);
+      loading.textContent = '{{ i18n "failed_pdf" }}';
+      return;
+    }
+    loading.style.display = 'none';
+    canvas.style.display  = 'block';
+    render(currentPage);
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(currentPage - 1); });
+  nextBtn.addEventListener('click', function() { goTo(currentPage + 1); });
+  prevZone.addEventListener('click', function() { goTo(currentPage - 1); });
+  nextZone.addEventListener('click', function() { goTo(currentPage + 1); });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
+
+  function onKey(e) {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); goTo(currentPage - 1); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  { e.preventDefault(); goTo(currentPage + 1); }
+  }
+  document.addEventListener('keydown', onKey);
+
+  init();
+}
+
+document.querySelectorAll('.slide-view-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() { openModal(btn.dataset.pdf, btn.dataset.title); });
+});
+</script>
+
+<script>
+(function() {
+  var grid    = document.getElementById('slides-grid');
+  var countEl = document.getElementById('slides-count');
+  if (!grid) return;
+
+  var cards = Array.from(grid.querySelectorAll('.slide-card'));
+  var activeKind = 'all';
+  var activeLang = 'all';
+  var activeSort = 'date-desc';
+
+  function apply() {
+    var visible = cards.filter(function(c) {
+      return (activeKind === 'all' || c.dataset.kind === activeKind) &&
+             (activeLang === 'all' || c.dataset.lang === activeLang);
+    });
+
+    visible.sort(function(a, b) {
+      if (activeSort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
+      if (activeSort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
+      if (activeSort === 'title-asc') return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+
+    cards.forEach(function(c) { c.style.display = 'none'; });
+    visible.forEach(function(c) { c.style.display = ''; grid.appendChild(c); });
+    countEl.textContent = visible.length + ' slide' + (visible.length === 1 ? '' : 's');
+  }
+
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var f = btn.dataset.filter;
+      document.querySelectorAll('.filter-btn[data-filter="' + f + '"]').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      if (f === 'kind') activeKind = btn.dataset.value;
+      if (f === 'lang') activeLang = btn.dataset.value;
+      apply();
+    });
+  });
+
+  document.querySelectorAll('.filter-btn[data-sort]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn[data-sort]').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeSort = btn.dataset.sort;
+      apply();
+    });
+  });
+})();
+</script>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="placeholder diagram">
+  <rect width="640" height="200" rx="12" fill="#1e1e2e"/>
+  <rect x="40" y="70" width="140" height="60" rx="8" fill="#F14D6C"/>
+  <text x="110" y="105" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle">source</text>
+  <line x1="180" y1="100" x2="250" y2="100" stroke="#9AA2A8" stroke-width="2"/>
+  <polygon points="250,100 240,94 240,106" fill="#9AA2A8"/>
+  <rect x="250" y="70" width="140" height="60" rx="8" fill="#45475a"/>
+  <text x="320" y="105" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle">propagation</text>
+  <line x1="390" y1="100" x2="460" y2="100" stroke="#9AA2A8" stroke-width="2"/>
+  <polygon points="460,100 450,94 450,106" fill="#9AA2A8"/>
+  <rect x="460" y="70" width="140" height="60" rx="8" fill="#F14D6C"/>
+  <text x="530" y="105" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle">sink</text>
+</svg>

@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.subtitle }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ with .Site.Params.author }}
+<meta name="author" content="{{ .name }}">
+{{ end }}
+<meta name="egg-message" content="{{ i18n "egg_message" }}">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<script>
+(function(){var r=document.documentElement;r.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('js-motion')}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+{{ $tokens := resources.Get "css/tokens.css" | minify | fingerprint }}
+{{ $site := resources.Get "css/site.css" | minify | fingerprint }}
+{{ $syntax := resources.Get "css/syntax.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $tokens.RelPermalink }}">
+<link rel="stylesheet" href="{{ $site.RelPermalink }}">
+<link rel="stylesheet" href="{{ $syntax.RelPermalink }}">
+{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
+{{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end }}
+{{ with .Site.Home.OutputFormats.Get "html" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}
+{{ template "_internal/opengraph.html" . }}
+{{ if .OutputFormats.Get "rss" }}
+{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+{{ end }}
+{{ end }}
+{{ with .Site.Params.measuredSiteId }}
+{{ if hugo.IsProduction }}
+<script
+  data-site-id="{{ . }}"
+  src="https://www.measured.site/js/script.js"
+  data-api-url="https://www.measured.site/api/session"
+  defer
+></script>
+{{ end }}
+{{ end }}

@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="wrap">
+
+  <section class="about-hero">
+    <div class="avatar-block">
+      <div class="avatar">
+        <img src="{{ .Site.Params.author.avatar | default .Site.Params.logo | relURL }}" alt="">
+      </div>
+      <div class="avatar-meta">
+        <div><span class="k">handle</span> {{ .Site.Params.author.handle | default .Site.Params.author.name }}</div>
+        <div><span class="k">based</span> {{ i18n "about_based" }}</div>
+        <div><span class="k">focus</span> {{ i18n "about_focus_label" }}</div>
+        {{ with .Site.Params.author.github }}<div><span class="k">github</span> <a href="https://github.com/{{ . }}" style="color: var(--brand-red)">{{ . }}</a></div>{{ end }}
+        {{ with .Site.Params.author.linkedin }}<div><span class="k">linkedin</span> <a href="https://www.linkedin.com/in/{{ . }}/" style="color: var(--brand-red)">{{ . }}</a></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="about-body">
+      <div class="eyebrow" style="margin-bottom: 20px;">{{ i18n "about_eyebrow" }}</div>
+      <h1>{{ i18n "about_hero" | safeHTML }}</h1>
+
+      <p class="lede">
+        {{ i18n "about_lede" }}
+      </p>
+
+      <p>
+        {{ i18n "about_focus" }}
+      </p>
+
+      <p>
+        {{ i18n "about_disclosure" }}
+      </p>
+
+      <h3>{{ i18n "about_writes" }}</h3>
+      <p>
+        {{ i18n "about_writes_body" }}
+      </p>
+
+      <h3>{{ i18n "about_contact" }}</h3>
+      <p>
+        Email <span class="mono" style="background: var(--neutral-100); padding: 2px 8px; border-radius: 4px; font-size: 0.88em;">{{ .Site.Params.author.email }}</span> {{ i18n "about_contact_body" }}
+      </p>
+    </div>
+  </section>
+
+</div>
+{{ end }}

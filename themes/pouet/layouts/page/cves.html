@@ -1,0 +1,96 @@
+{{ define "main" }}
+{{ $cves := sort .Site.Data.cves "date" "desc" }}
+{{ $total := len $cves }}
+
+{{ $nCritical := 0 }}
+{{ $nHigh     := 0 }}
+{{ $nMedium   := 0 }}
+{{ $nLow      := 0 }}
+{{ range $cves }}
+  {{ if ge .cvss 9.0 }}{{ $nCritical = add $nCritical 1 }}
+  {{ else if ge .cvss 7.0 }}{{ $nHigh = add $nHigh 1 }}
+  {{ else if ge .cvss 4.0 }}{{ $nMedium = add $nMedium 1 }}
+  {{ else }}{{ $nLow = add $nLow 1 }}{{ end }}
+{{ end }}
+
+<div class="wrap">
+
+  <section style="padding: 72px 0 24px;">
+    <div class="eyebrow">cve &middot; tracker</div>
+    <h1 class="h-display" style="font-size: clamp(56px, 6vw, 84px); margin-top: 16px;">
+      Known <span class="pixel">vulnerabilities</span>, tracked.
+    </h1>
+    <p class="lede" style="margin-top: 24px;">
+      A chronological index of CVEs I've researched or encountered. Sorted newest first.
+    </p>
+  </section>
+
+  <section class="cve-layout">
+
+    <div class="cve-timeline">
+      {{ range $cves }}
+      {{ $sev := "low" }}
+      {{ if ge .cvss 9.0 }}{{ $sev = "critical" }}
+      {{ else if ge .cvss 7.0 }}{{ $sev = "high" }}
+      {{ else if ge .cvss 4.0 }}{{ $sev = "medium" }}{{ end }}
+
+      <div class="cve-entry">
+        <div class="cve-dot-col">
+          <div class="cve-dot cvss-{{ $sev }}"></div>
+        </div>
+        <div class="cve-card">
+          <div class="cve-card-head">
+            <span class="cve-id">{{ .id }}</span>
+            <span class="cve-date">{{ .date }}</span>
+          </div>
+          <p class="cve-desc">{{ .description }}</p>
+          <div class="cve-chips">
+            {{ with .cwe }}<span class="cve-chip cve-chip-cwe">{{ . }}</span>{{ end }}
+            <span class="cve-chip cve-chip-score cvss-{{ $sev }}">CVSS&nbsp;{{ .cvss }}</span>
+          </div>
+          {{ with .nist }}
+          <a href="{{ . }}" class="cve-nist-link" target="_blank" rel="noopener noreferrer">&rarr;&nbsp;NIST NVD</a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <aside class="cve-rail">
+      <div class="eyebrow" style="margin-bottom: 12px;">totals</div>
+      <div class="cve-stats">
+        <div class="cve-stat">
+          <span class="cve-stat-label">all CVEs</span>
+          <span>{{ $total }}</span>
+        </div>
+        {{ if gt $nCritical 0 }}
+        <div class="cve-stat">
+          <span class="cve-stat-label" style="color:var(--danger)">critical</span>
+          <span>{{ $nCritical }}</span>
+        </div>
+        {{ end }}
+        {{ if gt $nHigh 0 }}
+        <div class="cve-stat">
+          <span class="cve-stat-label" style="color:#E86900">high</span>
+          <span>{{ $nHigh }}</span>
+        </div>
+        {{ end }}
+        {{ if gt $nMedium 0 }}
+        <div class="cve-stat">
+          <span class="cve-stat-label" style="color:var(--warn)">medium</span>
+          <span>{{ $nMedium }}</span>
+        </div>
+        {{ end }}
+        {{ if gt $nLow 0 }}
+        <div class="cve-stat">
+          <span class="cve-stat-label" style="color:var(--ok)">low</span>
+          <span>{{ $nLow }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </aside>
+
+  </section>
+
+</div>
+{{ end }}

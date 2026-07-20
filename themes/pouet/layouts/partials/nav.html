@@ -1,0 +1,54 @@
+<header class="nav" data-animate="nav">
+  <div class="nav-inner">
+    <a href="{{ "/" | relLangURL }}" class="brand">
+      <img src="{{ .Site.Params.logo | default "img/logo.svg" | relURL }}" alt="">
+      <span>{{ .Site.Title }}<span class="bang">{{ .Site.Params.brandSuffix | default "!" }}</span></span>
+    </a>
+    <nav class="nav-links">
+      {{ partial "nav/menu-links.html" . }}
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch">
+        {{ partial "nav/lang-switch.html" . }}
+      </div>
+      <button class="theme-toggle palette-btn" id="palette-btn" type="button"
+              aria-label="{{ i18n "search_label" }}" data-tooltip="{{ i18n "tooltip_search" }}">
+        <span>&gt;_</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"
+              data-tooltip-dark="{{ i18n "tooltip_theme_to_light" }}"
+              data-tooltip-light="{{ i18n "tooltip_theme_to_dark" }}">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="{{ "/index.xml" | relLangURL }}" class="btn-subscribe" data-tooltip="{{ i18n "tooltip_rss" }}">{{ i18n "subscribe" }}</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="{{ i18n "menu_open" }}" aria-controls="nav-overlay" aria-expanded="false">
+        <svg class="icon-bars" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+<div class="reading-progress" id="reading-progress"></div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="{{ i18n "menu_label" }}">
+  <div class="nav-overlay-inner">
+    <div class="nav-overlay-top">
+      <a href="{{ "/" | relLangURL }}" class="brand">
+        <img src="{{ .Site.Params.logo | default "img/logo.svg" | relURL }}" alt="">
+        <span>{{ .Site.Title }}<span class="bang">{{ .Site.Params.brandSuffix | default "!" }}</span></span>
+      </a>
+      <button class="nav-close" id="nav-close" type="button" aria-label="{{ i18n "menu_close" }}">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+    <nav class="nav-overlay-links">
+      {{ partial "nav/menu-links.html" . }}
+    </nav>
+    <div class="nav-overlay-meta">
+      <div class="lang-switch">
+        {{ partial "nav/lang-switch.html" . }}
+      </div>
+      <a href="{{ "/index.xml" | relLangURL }}" class="btn-subscribe">{{ i18n "subscribe" }}</a>
+    </div>
+  </div>
+</div>

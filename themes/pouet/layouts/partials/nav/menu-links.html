@@ -1,0 +1,6 @@
+{{- /* Main menu links. Context: the current page. Rendered in both the
+       desktop nav bar and the mobile overlay, so the active-state logic lives
+       in one place. */ -}}
+{{ range .Site.Menus.main }}
+<a href="{{ .URL | relLangURL }}"{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }} class="active"{{ end }}{{ with .Params }}{{ with .tooltip }} data-tooltip="{{ . }}"{{ end }}{{ end }}>{{ .Name }}</a>
+{{ end }}

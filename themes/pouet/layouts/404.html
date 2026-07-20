@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-meta" data-animate="hero-item">
+      <span class="hero-status"><span class="dot"></span>404</span>
+      <span class="eyebrow">page not found</span>
+    </div>
+    <h1 class="h-display" data-animate="hero-item">
+      <code>404</code> &middot; no such route
+    </h1>
+    <p class="lede" style="margin-top:40px" data-animate="hero-item">
+      This page moved, never existed, or was garbage-collected. The link that got you here is stale.
+    </p>
+    <div class="hero-ctas" data-animate="hero-item">
+      <a href="{{ "/" | relLangURL }}" class="btn btn-primary">Home &rarr;</a>
+      <a href="{{ "posts/" | relLangURL }}" class="btn btn-ghost">Posts</a>
+    </div>
+  </section>
+</div>
+{{ end }}

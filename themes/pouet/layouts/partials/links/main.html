@@ -1,0 +1,59 @@
+{{/* Collect unique tags across all links */}}
+{{ $allTags := slice }}
+{{ range .Params.links }}
+  {{ range .tags }}{{ $allTags = $allTags | append . }}{{ end }}
+{{ end }}
+{{ $uniqueTags := uniq $allTags | sort }}
+
+{{ $links := sort .Params.links "date" "desc" }}
+
+<div class="wrap">
+
+  <section style="padding: 72px 0 24px;">
+    <div class="eyebrow">{{ i18n "links_eyebrow" }}</div>
+    <h1 class="h-display" style="font-size: clamp(56px, 6vw, 84px); margin-top: 16px;">
+      {{ i18n "links_hero" | safeHTML }}
+    </h1>
+    <p class="lede" style="margin-top: 24px;">
+      {{ i18n "links_lede" }}
+    </p>
+  </section>
+
+  <div class="filter-bar" id="links-filter">
+    <span class="filter-label">{{ i18n "tags" }}</span>
+    <button type="button" class="filter-btn active" data-tag-all>All</button>
+    {{ range $uniqueTags }}
+    <button type="button" class="filter-btn" data-tag="{{ . }}">{{ . }}</button>
+    {{ end }}
+
+    <div class="filter-sep"></div>
+    <span class="filter-label">{{ i18n "links_match" }}</span>
+    <button type="button" class="filter-btn active" data-match="any">{{ i18n "links_any" }}</button>
+    <button type="button" class="filter-btn" data-match="all">{{ i18n "links_all" }}</button>
+
+    <span class="filter-count" id="links-count">{{ len .Params.links }} {{ i18n "links_count" }}</span>
+  </div>
+
+  <div class="links-grid" id="links-grid" style="margin-top: 24px;">
+    {{ range $links }}
+    {{ $host := "" }}
+    {{ with .url }}{{ $host = strings.TrimPrefix "www." (urls.Parse .).Host }}{{ end }}
+    <article class="link-card" data-tags="{{ delimit .tags "," }}">
+      <div class="link-tags">
+        {{ range .tags }}
+        <button type="button" class="chip chip-ghost link-tag" data-tag="{{ . }}">{{ . }}</button>
+        {{ end }}
+      </div>
+      <h2 class="link-title">
+        <a href="{{ .url }}" class="link-stretch" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
+      </h2>
+      <p class="link-desc">{{ .description }}</p>
+      <div class="link-footer">
+        <span class="link-date">{{ (time.AsTime .date).Format "2006.01.02" }}</span>
+        <span class="link-domain">{{ $host }}&nbsp;&rarr;</span>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+</div>

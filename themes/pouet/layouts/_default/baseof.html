@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+{{ $bgPages := slice "/" "/posts/" "/slides/" "/archives/" "/cves/" "/about/" "/links/" "/pouet/" "/fr/" "/fr/posts/" "/fr/slides/" "/fr/archives/" "/fr/cves/" "/fr/about/" "/fr/links/" }}
+{{ if or (in $bgPages .RelPermalink) (eq .Section "posts") }}
+<canvas id="pixel-bg" class="pixel-bg" aria-hidden="true"></canvas>
+{{ end }}
+{{ partial "nav.html" . }}
+<main data-animate="fade">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "footer.html" . }}
+{{ partial "mermaid.html" . }}
+<div id="cursor-tooltip" aria-hidden="true"><span class="tooltip-text"></span><span class="tooltip-caret">|</span></div>
+{{ partial "palette.html" . }}
+{{ $gsap := resources.Get "js/vendor/gsap.min.js" | fingerprint }}
+{{ $st := resources.Get "js/vendor/ScrollTrigger.min.js" | fingerprint }}
+{{ $anim := resources.Get "js/animations.js" | minify | fingerprint }}
+{{ $zoom := resources.Get "js/zoom.js" | minify | fingerprint }}
+{{ $navmenu := resources.Get "js/nav-menu.js" | minify | fingerprint }}
+{{ $tooltip := resources.Get "js/tooltip.js" | minify | fingerprint }}
+{{ $egg := resources.Get "js/egg.js" | minify | fingerprint }}
+{{ $fuzzy := resources.Get "js/fuzzy.js" | minify | fingerprint }}
+{{ $idxclient := resources.Get "js/index-client.js" | minify | fingerprint }}
+{{ $palette := resources.Get "js/palette.js" | minify | fingerprint }}
+{{ $popovers := resources.Get "js/popovers.js" | minify | fingerprint }}
+<script defer src="{{ $gsap.RelPermalink }}"></script>
+<script defer src="{{ $st.RelPermalink }}"></script>
+<script defer src="{{ $anim.RelPermalink }}"></script>
+<script defer src="{{ $zoom.RelPermalink }}"></script>
+<script defer src="{{ $navmenu.RelPermalink }}"></script>
+<script defer src="{{ $tooltip.RelPermalink }}"></script>
+<script defer src="{{ $egg.RelPermalink }}"></script>
+<script defer src="{{ $fuzzy.RelPermalink }}"></script>
+<script defer src="{{ $idxclient.RelPermalink }}"></script>
+<script defer src="{{ $palette.RelPermalink }}"></script>
+<script defer src="{{ $popovers.RelPermalink }}"></script>
+{{ block "scripts" . }}{{ end }}
+<script>
+(function(){
+  var d = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function syncTooltip(){
+    var dark = d.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('data-tooltip', btn.getAttribute(dark ? 'data-tooltip-dark' : 'data-tooltip-light'));
+  }
+  syncTooltip();
+  function flip(){
+    var next = d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    d.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    syncTooltip();
+  }
+  btn.addEventListener('click', function(){
+    var motion = d.classList.contains('js-motion');
+    if (typeof gsap !== 'undefined' && motion) {
+      gsap.fromTo(document.querySelectorAll('#theme-toggle svg'),
+        { rotation: -180 }, { rotation: 0, duration: 0.4, ease: 'power2.out' });
+    }
+    if (!document.startViewTransition || !motion || d.classList.contains('theme-wipe')) { flip(); return; }
+    var r = btn.getBoundingClientRect();
+    var x = r.left + r.width / 2;
+    var y = r.top + r.height / 2;
+    var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    d.classList.add('theme-wipe');
+    var t = document.startViewTransition(flip);
+    t.ready.then(function(){
+      d.animate(
+        { clipPath: [
+            'circle(0 at ' + x + 'px ' + y + 'px)',
+            'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'
+        ] },
+        { duration: 400, easing: 'ease-out', pseudoElement: '::view-transition-new(root)' }
+      );
+    }).catch(function(){});
+    t.finished.finally(function(){ d.classList.remove('theme-wipe'); }).catch(function(){});
+  });
+})();
+</script>
+</body>
+</html>

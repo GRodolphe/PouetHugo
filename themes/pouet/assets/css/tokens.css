@@ -1,0 +1,159 @@
+/* Pouet Design System — Colors & Type tokens */
+/* Web fonts are loaded from head.html: an @import here would only be
+   discovered after this stylesheet downloads, serializing the font fetch
+   behind the CSS on the critical render path. */
+
+:root {
+  /* ---------- Brand ---------- */
+  --brand-red:       #F14D6C;
+  --brand-red-deep:  #EF4D6A;
+  --brand-red-ink:   #C93955;
+  --brand-red-soft:  #FDE3E8;
+
+  /* ---------- Neutrals ---------- */
+  --neutral-050: #F6F8F9;
+  --neutral-100: #EEF1F3;
+  --neutral-200: #DDE0E2;
+  --neutral-250: #DCE8EE;
+  --neutral-300: #C6CCD1;
+  --neutral-400: #9AA2A8;
+  --neutral-500: #6C757B;
+  --neutral-600: #4B5358;
+  --neutral-700: #2F3438;
+  --neutral-800: #1C1F22;
+  --neutral-900: #0F1113;
+
+  /* ---------- Semantic surfaces ---------- */
+  --bg-app:       var(--neutral-050);
+  --bg-paper:     #FFFFFF;
+  --bg-cool:      var(--neutral-250);
+  --bg-sunk:      var(--neutral-100);
+  --bg-ink:       var(--neutral-900);
+
+  /* ---------- Semantic text ---------- */
+  --fg-1:         var(--neutral-900);
+  --fg-2:         var(--neutral-600);
+  --fg-3:         var(--neutral-400);
+  --fg-invert:    #FFFFFF;
+  --fg-accent:    var(--brand-red);
+
+  /* ---------- Borders ---------- */
+  --border-hair:  rgba(15, 17, 19, 0.08);
+  --border-line:  rgba(15, 17, 19, 0.14);
+  --border-bold:  rgba(15, 17, 19, 0.32);
+  --border-focus: var(--brand-red);
+
+  /* ---------- Signal (semantic utility) ---------- */
+  --ok:      #1F9D55;
+  --warn:    #E0A700;
+  --danger:  var(--brand-red);
+  --info:    #2E6FE5;
+
+  /* ---------- Radii ---------- */
+  --r-xs:  2px;
+  --r-sm:  4px;
+  --r-md:  8px;
+  --r-lg:  12px;
+  --r-xl:  20px;
+  --r-pill: 999px;
+
+  /* ---------- Spacing (4-pt) ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-1: 0 1px 0 rgba(15,17,19,0.04), 0 1px 2px rgba(15,17,19,0.06);
+  --shadow-2: 0 2px 4px rgba(15,17,19,0.06), 0 6px 14px rgba(15,17,19,0.08);
+  --shadow-3: 0 8px 24px rgba(15,17,19,0.12), 0 2px 6px rgba(15,17,19,0.08);
+  --shadow-inset: inset 0 0 0 1px var(--border-hair);
+  --shadow-focus: 0 0 0 3px rgba(241,77,108,0.25);
+
+  /* ---------- Type stacks ---------- */
+  --font-sans:    'Space Grotesk', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-serif:   'Instrument Serif', Georgia, serif;
+  --font-pixel:   'Press Start 2P', cursive;
+
+  /* ---------- Type scale ---------- */
+  --fs-display:  72px;
+  --fs-h1:       48px;
+  --fs-h2:       32px;
+  --fs-h3:       24px;
+  --fs-h4:       18px;
+  --fs-body:     15px;
+  --fs-sm:       13px;
+  --fs-xs:       11px;
+
+  --lh-tight:  1.1;
+  --lh-snug:   1.25;
+  --lh-body:   1.5;
+  --lh-loose:  1.7;
+
+  --tracking-tight:  -0.02em;
+  --tracking-caps:    0.12em;
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 420ms;
+}
+
+/* ---------- Dark mode ---------- */
+[data-theme="dark"] {
+  --brand-red:       #FF6B84;
+  --brand-red-deep:  #FF5F7A;
+  --brand-red-ink:   #FF8FA3;
+  --brand-red-soft:  rgba(241, 77, 108, 0.15);
+
+  --neutral-050: #161819;
+  --neutral-100: #1C1F22;
+  --neutral-200: #252829;
+  --neutral-250: #1A2228;
+  --neutral-300: #363B3F;
+  --neutral-400: #6C757B;
+  --neutral-500: #9AA2A8;
+  --neutral-600: #B0B8BE;
+  --neutral-700: #D0D4D8;
+  --neutral-800: #E6E8EB;
+  --neutral-900: #F2F4F5;
+
+  --bg-app:       #111314;
+  --bg-paper:     #131517;
+  --bg-cool:      #1A2228;
+  --bg-sunk:      #1C1F22;
+  --bg-ink:       #F2F4F5;
+
+  --fg-1:         #F2F4F5;
+  --fg-2:         #B0B8BE;
+  --fg-3:         #6C757B;
+  --fg-invert:    #0F1113;
+  --fg-accent:    var(--brand-red);
+
+  --border-hair:  rgba(255, 255, 255, 0.08);
+  --border-line:  rgba(255, 255, 255, 0.14);
+  --border-bold:  rgba(255, 255, 255, 0.28);
+  --border-focus: var(--brand-red);
+
+  --ok:      #6BD49E;
+  --warn:    #F5CF62;
+  --danger:  var(--brand-red);
+  --info:    #6BA3FF;
+
+  --shadow-1: 0 1px 0 rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-2: 0 2px 4px rgba(0,0,0,0.3), 0 6px 14px rgba(0,0,0,0.4);
+  --shadow-3: 0 8px 24px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
+  --shadow-inset: inset 0 0 0 1px var(--border-hair);
+  --shadow-focus: 0 0 0 3px rgba(255, 107, 132, 0.3);
+
+  color-scheme: dark;
+}

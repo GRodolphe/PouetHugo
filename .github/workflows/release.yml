@@ -1,0 +1,64 @@
+name: Release
+
+# Tag a version (e.g. `git tag v1.0.0 && git push --tags`) to publish a
+# GitHub release with a source archive and SLSA Build Level 3 provenance.
+# Verification instructions live in SECURITY.md.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build source archive
+    runs-on: ubuntu-latest
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Create archive
+        run: git archive --format=tar.gz --prefix="pouethugo-${GITHUB_REF_NAME}/" -o "pouethugo-${GITHUB_REF_NAME}.tar.gz" "${GITHUB_REF_NAME}"
+      - name: Compute subject hashes
+        id: hash
+        run: echo "hashes=$(sha256sum pouethugo-*.tar.gz | base64 -w0)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-archive
+          path: pouethugo-*.tar.gz
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub release
+    needs: [build]
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-archive
+      - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
+        with:
+          files: pouethugo-*.tar.gz
+          generate_release_notes: true
+
+  provenance:
+    # SLSA Build L3: provenance is generated and signed in an isolated,
+    # trusted reusable workflow, not in this repository's own job.
+    # The generator must be referenced by tag, not SHA (its verifier
+    # resolves the tag); this is the documented exception to SHA-pinning.
+    name: SLSA provenance
+    needs: [build, release]
+    permissions:
+      actions: read    # read the workflow metadata
+      id-token: write  # sign the provenance via OIDC
+      contents: write  # attach the provenance to the release
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.1.0
+    with:
+      base64-subjects: ${{ needs.build.outputs.hashes }}
+      upload-assets: true

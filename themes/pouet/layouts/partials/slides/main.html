@@ -1,0 +1,89 @@
+{{ $slides := sort .Site.Data.slides "date" "desc" }}
+
+{{ $kinds := slice }}
+{{ $langs := slice }}
+{{ range $slides }}
+  {{ if not (in $kinds .kind) }}{{ $kinds = $kinds | append .kind }}{{ end }}
+  {{ with .lang }}{{ if not (in $langs .) }}{{ $langs = $langs | append . }}{{ end }}{{ end }}
+{{ end }}
+
+<div class="wrap">
+
+  <section style="padding: 72px 0 24px;">
+    <div class="eyebrow">{{ i18n "slides_eyebrow" }}</div>
+    <h1 class="h-display" style="font-size: clamp(56px, 6vw, 84px); margin-top: 16px;">
+      {{ i18n "slides_hero" | safeHTML }}
+    </h1>
+    <p class="lede" style="margin-top: 24px;">
+      {{ i18n "slides_lede" }}
+    </p>
+  </section>
+
+  <div class="filter-bar">
+    <span class="filter-label">{{ i18n "kind" }}</span>
+    <button class="filter-btn active" data-filter="kind" data-value="all">All</button>
+    {{ range $kinds }}
+    <button class="filter-btn" data-filter="kind" data-value="{{ . }}">{{ . }}</button>
+    {{ end }}
+
+    {{ if $langs }}
+    <div class="filter-sep"></div>
+    <span class="filter-label">{{ i18n "lang" }}</span>
+    <button class="filter-btn active" data-filter="lang" data-value="all">All</button>
+    {{ range $langs }}
+    {{ $f := "" }}
+    {{ if eq . "fr" }}{{ $f = "🇫🇷" }}{{ else if eq . "en" }}{{ $f = "🇬🇧" }}{{ else if eq . "de" }}{{ $f = "🇩🇪" }}{{ else if eq . "es" }}{{ $f = "🇪🇸" }}{{ end }}
+    <button class="filter-btn" data-filter="lang" data-value="{{ . }}">{{ $f }}&nbsp;{{ . | upper }}</button>
+    {{ end }}
+    {{ end }}
+
+    <div class="filter-sep"></div>
+    <span class="filter-label">{{ i18n "sort" }}</span>
+    <button class="filter-btn active" data-sort="date-desc">{{ i18n "newest" }}</button>
+    <button class="filter-btn" data-sort="date-asc">{{ i18n "oldest" }}</button>
+    <button class="filter-btn" data-sort="title-asc">A&ndash;Z</button>
+
+    <span class="filter-count" id="slides-count">{{ len $slides }} slide{{ if ne (len $slides) 1 }}s{{ end }}</span>
+  </div>
+
+  <div class="slides-grid" id="slides-grid" style="margin-top: 24px;">
+    {{ range $slides }}
+    {{ $kindClass := "rump" }}{{ if eq .kind "long talk" }}{{ $kindClass = "long" }}{{ end }}
+    {{ $flag := "" }}
+    {{ if eq .lang "fr" }}{{ $flag = "🇫🇷" }}
+    {{ else if eq .lang "en" }}{{ $flag = "🇬🇧" }}
+    {{ else if eq .lang "de" }}{{ $flag = "🇩🇪" }}
+    {{ else if eq .lang "es" }}{{ $flag = "🇪🇸" }}
+    {{ end }}
+
+    <article class="slide-card"
+      data-kind="{{ .kind }}"
+      data-lang="{{ .lang | default "" }}"
+      data-date="{{ .date }}"
+      data-title="{{ .title }}">
+      <div class="slide-meta">
+        <div class="slide-header">
+          <h2 class="slide-title">{{ .title }}</h2>
+          {{ with $flag }}<span class="slide-lang">{{ . }}</span>{{ end }}
+        </div>
+        <p class="slide-desc">{{ .description }}</p>
+        <div class="slide-footer">
+          <span class="slide-date">{{ .date }}</span>
+          <span class="slide-kind slide-kind-{{ $kindClass }}">{{ .kind }}</span>
+        </div>
+        <div class="slide-actions">
+          <button class="slide-view-btn"
+                  data-pdf="/slides/{{ .file }}"
+                  data-title="{{ .title }}">
+            &#9654;&nbsp;{{ i18n "view_slides" }}
+          </button>
+          <a href="/slides/{{ .file }}" class="slide-dl-link" target="_blank" rel="noopener noreferrer">
+            &#8595;&nbsp;PDF
+          </a>
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+</div>

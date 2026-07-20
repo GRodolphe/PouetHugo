@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="wrap">
+
+  <section class="about-hero">
+    <div class="avatar-block">
+      <div class="avatar">
+        <img src="{{ .Site.Params.author.avatar | default .Site.Params.logo | relURL }}" alt="">
+      </div>
+      <div class="avatar-meta">
+        <div><span class="k">handle</span> {{ .Site.Params.author.handle | default .Site.Params.author.name }}</div>
+        <div><span class="k">based</span> {{ i18n "about_based" }}</div>
+        <div><span class="k">focus</span> {{ i18n "about_focus_label" }}</div>
+        {{ with .Site.Params.author.github }}<div><span class="k">github</span> <a href="https://github.com/{{ . }}" style="color: var(--brand-red)">{{ . }}</a></div>{{ end }}
+        {{ with .Site.Params.author.linkedin }}<div><span class="k">linkedin</span> <a href="https://www.linkedin.com/in/{{ . }}/" style="color: var(--brand-red)">{{ . }}</a></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="about-body">
+      <div class="eyebrow" style="margin-bottom: 20px;">hi &middot; this is me</div>
+      <h1>I break software, <span class="pixel">politely,</span> and then I write it up.</h1>
+
+      <p class="lede">
+        I&rsquo;m an application-security engineer and independent researcher. Day job: finding and fixing vulnerabilities. Off the clock: reading CVE feeds, reproducing bugs, building small tools, and publishing writeups here.
+      </p>
+
+      <p>
+        My focus is reachability - not just &ldquo;is this function vulnerable?&rdquo; but &ldquo;can anyone actually get there, and with what pre-conditions?&rdquo; Most of the interesting work in appsec lives in that gap between a lint rule firing and a bug a motivated attacker can land.
+      </p>
+
+      <p>
+        I disclose responsibly. 90-day timeline by default, extended on request when the fix is real.
+      </p>
+
+      <h3>What I write about</h3>
+      <p>
+        Vuln writeups (with repros), research on how classes of bugs behave in the wild, tool launches, and the occasional essay about how this craft actually works.
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+        Email <span class="mono" style="background: var(--neutral-100); padding: 2px 8px; border-radius: 4px; font-size: 0.88em;">{{ .Site.Params.author.email }}</span> for anything.
+      </p>
+    </div>
+  </section>
+
+</div>
+{{ end }}

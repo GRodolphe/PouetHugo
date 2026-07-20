@@ -1,0 +1,10 @@
+name = "pouet"
+license = "MIT"
+licenselink = "https://github.com/GRodolphe/PouetHugo/blob/main/LICENSE"
+description = "Bilingual blog theme for technical writing and security research - command palette, view transitions, mermaid diagrams, Catppuccin syntax highlighting."
+tags = ["blog", "security", "minimal", "multilingual", "dark-mode"]
+min_version = "0.139.0"
+
+[author]
+name = "Rodolphe G"
+homepage = "https://github.com/GRodolphe"

@@ -1,0 +1,20 @@
+{{- /* EN/FR language switch. Context: the current page. Resolves each
+       language's translated URL, falling back to that language's home page
+       when the current page has no translation. Rendered in both the desktop
+       nav bar and the mobile overlay. */ -}}
+{{ $currentLang := $.Site.Language.Lang }}
+{{ $page := . }}
+{{ range $.Site.Languages }}
+  {{ $lang := .Lang }}
+  {{ $langName := .LanguageName }}
+  {{ $href := "" }}
+  {{ range $page.AllTranslations }}
+    {{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}
+  {{ end }}
+  {{ if not $href }}
+    {{ range $.Site.Home.AllTranslations }}
+      {{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}
+    {{ end }}
+  {{ end }}
+  <a href="{{ $href }}" class="{{ if eq $lang $currentLang }}active{{ end }}"{{ if ne $lang $currentLang }} data-tooltip="{{ i18n "tooltip_lang" }}"{{ end }}>{{ $langName }}</a>
+{{ end }}

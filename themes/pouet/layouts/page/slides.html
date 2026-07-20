@@ -1,0 +1,7 @@
+{{/* Thin wrapper. Hugo 0.139 (production build via npm) only resolves
+layouts/page/slides.html; Hugo 0.146+ (system hugo server) only resolves
+layouts/_default/slides.html - so the same wrapper exists at both paths and
+all real content lives in partials/slides/. Edit the partials, not this file.
+The same dual-path constraint applies to pouet.html. */}}
+{{ define "main" }}{{ partial "slides/main.html" . }}{{ end }}
+{{ define "scripts" }}{{ partial "slides/scripts.html" . }}{{ end }}

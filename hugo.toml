@@ -1,0 +1,170 @@
+# PouetHugo site configuration.
+# Every key the theme understands is listed here; the full reference
+# lives in docs/configuration.md.
+
+# Where the site will live. On Cloudflare Pages, build.js overrides this
+# at build time (see docs/deployment.md).
+baseURL = 'https://example.com/'
+# Site title. Also rendered as the brand mark in the nav and footer.
+title = "pouet"
+theme = 'pouet'
+defaultContentLanguage = 'en'
+enableRobotsTXT = true
+
+# Home page outputs: HTML + RSS (defaults) + JSON search index
+# consumed by the command palette and link-preview popovers.
+[outputs]
+home = ["html", "rss", "json"]
+
+[params]
+# Tagline: home page <title> suffix.
+subtitle = "notes from the lab"
+# Meta description fallback for pages without their own.
+description = "A bilingual Hugo blog template for technical writing and security research."
+# Brand mark shown in the nav/footer, and the favicon.
+logo = "img/logo.svg"
+favicon = "img/logo.svg"
+# Glyph appended to the brand name in the accent color.
+brandSuffix = "!"
+# Optional privacy-friendly analytics (measured.site). Set your site id
+# to load the script in production builds; leave it out to ship none.
+# measuredSiteId = "site_xxxxxxxxxxxxxxxx"
+
+[params.author]
+name = "Jane Doe"          # <meta name="author"> + archetype default
+handle = "jdoe"            # home page terminal prompt + copyright line
+email = "you@example.com"  # footer contact + about page
+github = "your-github"     # footer + about page; remove to hide
+# linkedin = "your-slug"   # about page; remove to hide
+# avatar = "img/avatar.svg" # about page portrait; defaults to the logo
+
+# Languages. Each language has its own content dir, params, and menu.
+# To go monolingual, delete one block and its content dir - nothing else
+# to unwire (see docs/i18n.md).
+[languages]
+  [languages.en]
+    languageCode = 'en'
+    languageName = 'EN'
+    weight = 1
+    contentDir = 'content/en'
+    [languages.en.params]
+      subtitle = "notes from the lab"
+      description = "A bilingual Hugo blog template for technical writing and security research."
+
+    [[languages.en.menu.main]]
+      name = "Home"
+      url = "/"
+      weight = 1
+      [languages.en.menu.main.params]
+        tooltip = "cd ~"
+    [[languages.en.menu.main]]
+      name = "Posts"
+      url = "/posts/"
+      weight = 2
+      [languages.en.menu.main.params]
+        tooltip = "ls ./posts"
+    [[languages.en.menu.main]]
+      name = "Archives"
+      url = "/archives/"
+      weight = 3
+      [languages.en.menu.main.params]
+        tooltip = "everything, dated"
+    [[languages.en.menu.main]]
+      name = "CVE"
+      url = "/cves/"
+      weight = 4
+      [languages.en.menu.main.params]
+        tooltip = "the paper trail"
+    [[languages.en.menu.main]]
+      name = "Slides"
+      url = "/slides/"
+      weight = 5
+      [languages.en.menu.main.params]
+        tooltip = "talks, minus the talking"
+    [[languages.en.menu.main]]
+      name = "Links"
+      url = "/links/"
+      weight = 6
+      [languages.en.menu.main.params]
+        tooltip = "stuff worth reading"
+    [[languages.en.menu.main]]
+      name = "About"
+      url = "/about/"
+      weight = 7
+      [languages.en.menu.main.params]
+        tooltip = "whoami"
+
+  [languages.fr]
+    languageCode = 'fr'
+    languageName = 'FR'
+    weight = 2
+    contentDir = 'content/fr'
+    [languages.fr.params]
+      subtitle = "carnets du labo"
+      description = "Un template Hugo bilingue pour l'ecriture technique et la recherche en securite."
+
+    [[languages.fr.menu.main]]
+      name = "Accueil"
+      url = "/"
+      weight = 1
+      [languages.fr.menu.main.params]
+        tooltip = "cd ~"
+    [[languages.fr.menu.main]]
+      name = "Articles"
+      url = "/posts/"
+      weight = 2
+      [languages.fr.menu.main.params]
+        tooltip = "ls ./posts"
+    [[languages.fr.menu.main]]
+      name = "Archives"
+      url = "/archives/"
+      weight = 3
+      [languages.fr.menu.main.params]
+        tooltip = "tout, daté"
+    [[languages.fr.menu.main]]
+      name = "CVE"
+      url = "/cves/"
+      weight = 4
+      [languages.fr.menu.main.params]
+        tooltip = "les preuves"
+    [[languages.fr.menu.main]]
+      name = "Slides"
+      url = "/slides/"
+      weight = 5
+      [languages.fr.menu.main.params]
+        tooltip = "les talks, sans la voix"
+    [[languages.fr.menu.main]]
+      name = "Liens"
+      url = "/links/"
+      weight = 6
+      [languages.fr.menu.main.params]
+        tooltip = "de quoi lire"
+    [[languages.fr.menu.main]]
+      name = "A propos"
+      url = "/about/"
+      weight = 7
+      [languages.fr.menu.main.params]
+        tooltip = "whoami"
+
+# Markup configuration. `unsafe = true` lets you use raw HTML in markdown
+# (the hero/about i18n strings rely on it for <span> accents).
+[markup.goldmark.renderer]
+unsafe = true
+
+# Syntax highlighting uses CSS classes styled by the theme's syntax.css
+# (Catppuccin Latte/Mocha). `noClasses = false` is what makes that work;
+# the `style` value is only a fallback and is not what you see on screen.
+[markup.highlight]
+noClasses = false
+style = "monokai"
+
+# Image processing settings
+[imaging]
+quality = 95
+resampleFilter = "Lanczos"
+
+# Taxonomies. The post-type chip (writeup, tool, essay...) is the plain
+# `postKind` frontmatter field, not a taxonomy.
+[taxonomies]
+tag = "tags"
+category = "categories"

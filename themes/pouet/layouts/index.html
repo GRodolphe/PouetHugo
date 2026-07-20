@@ -1,0 +1,112 @@
+{{ define "main" }}
+<div class="wrap">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-meta" data-animate="hero-item">
+      <span class="hero-status"><span class="dot"></span>{{ i18n "hero_status" }}</span>
+      <span class="eyebrow">{{ i18n "hero_eyebrow" }}</span>
+    </div>
+    <h1 class="h-display" data-animate="hero-item">
+      {{ i18n "hero_title" | safeHTML }}
+    </h1>
+    <p class="lede" style="margin-top:40px" data-animate="hero-item">
+      {{ i18n "hero_body" }}
+    </p>
+    <div class="hero-ctas" data-animate="hero-item">
+      <a href="{{ "posts/" | relLangURL }}" class="btn btn-primary">{{ i18n "hero_cta_posts" }} &rarr;</a>
+      <a href="{{ "about/" | relLangURL }}" class="btn btn-ghost">{{ i18n "hero_cta_about" }}</a>
+    </div>
+  </section>
+
+  <!-- Terminal cue -->
+  <section class="term" aria-label="terminal" data-animate="term">
+    <div class="head">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span style="margin-left:8px">~/research/{{ now.Year }} - zsh</span>
+    </div>
+    <div data-animate="term-line"><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@lab</span> <span class="muted">~</span> <span class="muted">$</span> cat recent.log</div>
+    <div data-animate="term-line"><span class="muted">#</span> <span class="dim">last entries &middot; press enter to open</span></div>
+    {{ range first 4 (where .Site.RegularPages "Section" "posts") }}
+    <div data-animate="term-line">{{ .Date.Format "2006.01.02" }}  {{ with .Params.tags }}{{ with index . 0 }}<span class="warn">{{ upper . }}</span>{{ end }}{{ end }}  {{ with .Params.cve }}<span class="cve">{{ . }}</span>{{ end }}  {{ .Title | truncate 40 }}  <span class="path">{{ .RelPermalink }}</span></div>
+    {{ end }}
+    <div><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@lab</span> <span class="muted">~</span> <span class="muted">$</span> <span class="cursor"></span></div>
+  </section>
+
+  <!-- Featured post (first post) -->
+  {{ $featured := index (where .Site.RegularPages "Section" "posts") 0 }}
+  {{ with $featured }}
+  <section>
+    <div class="section-head">
+      <div class="section-head-title">
+        <div class="eyebrow"><span class="dot-red">&bull;</span>&nbsp;&nbsp;{{ i18n "featured_eyebrow" }}</div>
+        <h2 class="h-section">{{ i18n "featured_title" }}</h2>
+      </div>
+      <a href="{{ "posts/" | relLangURL }}" class="more">{{ i18n "all_posts_link" }} &rarr;</a>
+    </div>
+
+    <article class="featured" data-animate="reveal">
+      <div class="tag"><span class="bar"></span> {{ with .Params.tags }}{{ delimit . ", " }}{{ end }} &middot; {{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min" }}</div>
+      <h2>{{ .Title }}</h2>
+      <p class="blurb">{{ .Description | default (.Summary | plainify | truncate 200) }}</p>
+      <div class="feat-meta">
+        <span>{{ .Date.Format "2006.01.02" }}</span>
+        <span>&middot;</span>
+        <span>{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min" }}</span>
+        {{ with .Params.tags }}
+        <span>&middot;</span>
+        <span>tags: {{ delimit . ", " }}</span>
+        {{ end }}
+      </div>
+      <div style="margin-top:28px">
+        <a href="{{ .RelPermalink }}" class="btn btn-primary">{{ i18n "read_post" }} &rarr;</a>
+      </div>
+    </article>
+  </section>
+  {{ end }}
+
+  <!-- Latest posts -->
+  <section>
+    <div class="section-head">
+      <div class="section-head-title">
+        <div class="eyebrow">{{ i18n "latest_eyebrow" }}</div>
+        <h2 class="h-section">{{ i18n "latest_title" }}</h2>
+      </div>
+      <a href="{{ "posts/" | relLangURL }}" class="more">{{ i18n "archive_link" }} &rarr;</a>
+    </div>
+
+    <div class="post-list" data-animate="reveal-children">
+      {{ range first 6 (where .Site.RegularPages "Section" "posts") }}
+      <a href="{{ .RelPermalink }}" class="post-row" style="color:inherit" data-animate="reveal-child">
+        <div class="date">{{ .Date.Format "2006.01.02" }}</div>
+        <div>
+          <div class="meta">
+            {{ with .Params.cve }}<span class="chip chip-cve">{{ . }}</span>{{ end }}
+            {{ with .Params.postKind }}<span class="chip chip-ghost">{{ . }}</span>{{ end }}
+            {{ with .Params.tags }}{{ range first 2 . }}<span class="chip chip-ghost">{{ . }}</span>{{ end }}{{ end }}
+          </div>
+          <h3>{{ .Title }}</h3>
+          <p class="blurb">{{ .Description | default (.Summary | plainify | truncate 160) }}</p>
+        </div>
+        <div class="read">{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min" }}</div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- Subscribe -->
+  <section class="subscribe-section" data-animate="reveal">
+    <div>
+      <div class="eyebrow">{{ i18n "subscribe_eyebrow" }}</div>
+      <h3 style="font-family:var(--font-display); font-weight:700; font-size:28px; letter-spacing:-0.02em; margin:10px 0 8px;">{{ i18n "subscribe_title" }}</h3>
+      <p style="margin:0; color:var(--fg-2); font-size:15px; line-height:1.55; max-width:520px;">
+        {{ i18n "subscribe_body" }}
+      </p>
+    </div>
+    <div>
+      <a href="{{ "/index.xml" | relLangURL }}" class="btn btn-primary">{{ i18n "rss_feed" }} &rarr;</a>
+    </div>
+  </section>
+
+</div>
+{{ end }}

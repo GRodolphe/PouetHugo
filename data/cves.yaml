@@ -1,0 +1,19 @@
+# CVE tracker entries, rendered on /cves/ (newest first).
+# Fields: id, description, date (publication), cwe, cvss (number),
+# nist (link to the advisory or CVE record).
+# The two entries below are famous public CVEs kept as examples -
+# replace them with your own.
+
+- id: "CVE-2021-44228"
+  description: "Log4Shell: Apache Log4j2 JNDI features do not protect against attacker-controlled LDAP and other JNDI-related endpoints, allowing unauthenticated remote code execution via logged strings."
+  date: "2021-12-10"
+  cwe: "CWE-502"
+  cvss: 10.0
+  nist: "https://www.cve.org/CVERecord?id=CVE-2021-44228"
+
+- id: "CVE-2014-0160"
+  description: "Heartbleed: the TLS heartbeat extension in OpenSSL allows remote attackers to read up to 64KB of process memory per request, leaking private keys, session cookies, and credentials."
+  date: "2014-04-07"
+  cwe: "CWE-125"
+  cvss: 7.5
+  nist: "https://www.cve.org/CVERecord?id=CVE-2014-0160"

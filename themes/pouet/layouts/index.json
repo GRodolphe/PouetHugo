@@ -1,0 +1,16 @@
+{{- /* Build-time search index consumed by palette.js and popovers.js.
+       Emitted once per language: /index.json and /fr/index.json.
+       Must render on Hugo 0.139 (prod) and 0.163 (dev). */ -}}
+{{- $index := slice -}}
+{{- range .Site.RegularPages -}}
+{{- if .Params.noindex -}}{{- continue -}}{{- end -}}
+{{- $summary := (.Description | default .Summary) | plainify | htmlUnescape | truncate 180 -}}
+{{- $index = $index | append (dict
+    "title" .Title
+    "url" .RelPermalink
+    "section" (.Section | default "page")
+    "date" (cond .Date.IsZero "" (.Date.Format "2006-01-02"))
+    "summary" $summary
+    "tags" (.Params.tags | default slice)) -}}
+{{- end -}}
+{{- $index | jsonify -}}

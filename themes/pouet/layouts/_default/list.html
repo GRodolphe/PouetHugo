@@ -1,0 +1,78 @@
+{{ define "main" }}
+<div class="wrap">
+
+  <section style="padding: 72px 0 24px;">
+    <div class="eyebrow">{{ i18n "all" }} {{ .Title | lower }}</div>
+    <h1 class="h-display" style="font-size: clamp(56px, 6vw, 84px); margin-top: 16px;">
+      {{ i18n "posts_hero" | safeHTML }}
+    </h1>
+    <p class="lede" style="margin-top: 24px;">
+      {{ len .Pages }} {{ i18n "posts_lede" }}
+    </p>
+  </section>
+
+  <section>
+    {{/* Collect all unique tags */}}
+    {{ $allTags := slice }}
+    {{ range .Pages }}
+      {{ with .Params.tags }}
+        {{ range . }}
+          {{ $allTags = $allTags | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ $uniqueTags := uniq $allTags | sort }}
+
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-tag="All">All</button>
+      {{ range $uniqueTags }}
+      <button class="filter-btn" data-tag="{{ . }}">{{ . }}</button>
+      {{ end }}
+      <span class="filter-count" id="filter-count">{{ len .Pages }} {{ i18n "posts" }}</span>
+    </div>
+
+    <div class="post-list" id="posts-list">
+      {{ range .Pages }}
+      <a href="{{ .RelPermalink }}" class="post-row" style="color:inherit" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+        <div class="date">{{ .Date.Format "2006.01.02" }}</div>
+        <div>
+          <div class="meta">
+            {{ with .Params.cve }}<span class="chip chip-cve">{{ . }}</span>{{ end }}
+            {{ with .Params.tags }}{{ range first 3 . }}<span class="chip chip-ghost">{{ . }}</span>{{ end }}{{ end }}
+          </div>
+          <h3>{{ .Title }}</h3>
+          <p class="blurb">{{ .Description | default (.Summary | plainify | truncate 160) }}</p>
+        </div>
+        <div class="read">{{ math.Round (div (countwords .Content) 200.0) }} min</div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  var bar = document.getElementById('filter-bar');
+  var rows = document.querySelectorAll('#posts-list .post-row');
+  var count = document.getElementById('filter-count');
+  var postWord = {{ i18n "posts" }};
+
+  bar.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    bar.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var tag = btn.getAttribute('data-tag');
+    var visible = 0;
+    rows.forEach(function(row) {
+      var tags = row.getAttribute('data-tags');
+      var show = tag === 'All' || (tags && tags.split(',').indexOf(tag) !== -1);
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    count.textContent = visible + ' ' + postWord;
+  });
+})();
+</script>
+{{ end }}

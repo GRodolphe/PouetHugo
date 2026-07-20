@@ -1,0 +1,294 @@
+# Navigation & common
+[subscribe]
+other = "S'abonner"
+
+[menu_open]
+other = "Ouvrir le menu"
+
+[menu_close]
+other = "Fermer le menu"
+
+[menu_label]
+other = "Menu"
+
+# Post list
+[all]
+other = "tous les"
+
+[posts_hero]
+other = "Tout ce que j'ai <span class=\"pixel\">publié,</span><br>dans un seul flux."
+
+[posts_lede]
+other = "articles entre writeups, recherche et analyses techniques. Filtrer par tag."
+
+[posts]
+other = "articles"
+
+[post]
+one = "article"
+other = "articles"
+
+[min_read]
+other = "min de lecture"
+
+[older]
+other = "précédent"
+
+[newer]
+other = "suivant"
+
+[tags]
+other = "tags"
+
+# Archives
+[archives_eyebrow]
+other = "archives · par année"
+
+[archives_hero]
+other = "Tout, dans l'ordre <span class=\"pixel\">chronologique.</span>"
+
+[archives_lede]
+other = "Un index complet des publications. Groupées par année, les plus récentes en premier."
+
+[jump_to]
+other = "aller à"
+
+[totals]
+other = "totaux"
+
+[all_posts]
+other = "tous les articles"
+
+# CVE
+[cve_eyebrow]
+other = "cve · suivi"
+
+[cve_hero]
+other = "<span class=\"pixel\">Vulnérabilités</span> connues, suivies."
+
+[cve_lede]
+other = "Un index chronologique des CVE que j'ai recherchées ou rencontrées. Les plus récentes en premier."
+
+[all_cves]
+other = "tous les CVE"
+
+[critical]
+other = "critique"
+
+[high]
+other = "élevé"
+
+[medium]
+other = "moyen"
+
+[low]
+other = "faible"
+
+# Slides
+[slides_eyebrow]
+other = "slides · présentations"
+
+[slides_hero]
+other = "<span class=\"pixel\">Talks</span> & présentations."
+
+[slides_lede]
+other = "Conférences, rump sessions et supports de cours. Cliquez pour voir en ligne."
+
+[kind]
+other = "type"
+
+[lang]
+other = "langue"
+
+[sort]
+other = "tri"
+
+[newest]
+other = "récent"
+
+[oldest]
+other = "ancien"
+
+[view_slides]
+other = "Voir les slides"
+
+[loading]
+other = "Chargement…"
+
+[failed_pdf]
+other = "Impossible de charger le PDF."
+
+# About
+[about_eyebrow]
+other = "salut · c'est moi"
+
+[about_hero]
+other = "Je casse du logiciel, <span class=\"pixel\">poliment,</span> et ensuite j'écris dessus."
+
+[about_lede]
+other = "Je suis ingénieur en sécurité applicative et chercheur indépendant. Au quotidien : trouver et corriger des vulnérabilités. En dehors : lire les flux CVE, reproduire des bugs, créer des petits outils et publier des writeups ici."
+
+[about_focus]
+other = "Mon focus, c'est l'atteignabilité — pas juste \"est-ce que cette fonction est vulnérable ?\" mais \"est-ce que quelqu'un peut vraiment y arriver, et avec quelles pré-conditions ?\" L'essentiel du travail intéressant en appsec se situe dans cet écart entre un lint qui se déclenche et un bug qu'un attaquant motivé peut exploiter."
+
+[about_disclosure]
+other = "Je divulgue de manière responsable. Délai de 90 jours par défaut, prolongé sur demande quand le correctif est réel."
+
+[about_writes]
+other = "Ce que j'écris"
+
+[about_writes_body]
+other = "Des writeups de vulnérabilités (avec repros), de la recherche sur le comportement des classes de bugs dans la nature, des lancements d'outils et parfois un essai sur le fonctionnement réel de ce métier."
+
+[about_contact]
+other = "Contact"
+
+[about_contact_body]
+other = "pour tout."
+
+[about_based]
+other = "France"
+
+[about_focus_label]
+other = "AppSec"
+
+# Footer
+[footer_site]
+other = "Site"
+
+[footer_elsewhere]
+other = "Ailleurs"
+
+[footer_contact]
+other = "Contact"
+
+[footer_tagline]
+other = "Recherche en sécurité applicative, writeups et petits outils."
+
+[footer_disclosure]
+other = "Divulgation responsable bienvenue."
+
+[footer_built]
+other = "construit avec hugo et des accents rouges discrets"
+
+# Homepage
+[hero_status]
+other = "en ce moment · lecture de CVE avec un café"
+
+[hero_eyebrow]
+other = "sécurité applicative · recherche indépendante"
+
+[hero_title]
+other = "Code atteignable,<br><span class=\"pixel\">chemins</span> exploitables,<br><span class=\"serif\">et les notes que je prends en chemin.</span>"
+
+[hero_body]
+other = "Le carnet d'un ingénieur appsec. Ici, j'écris sur les vulnérabilités que je trouve, je publie des petits outils, et je réfléchis à voix haute sur comment le logiciel moderne casse vraiment."
+
+[hero_cta_posts]
+other = "Lire les articles récents"
+
+[hero_cta_about]
+other = "À propos"
+
+[featured_eyebrow]
+other = "à la une · lecture longue"
+
+[featured_title]
+other = "L'article par lequel commencer."
+
+[all_posts_link]
+other = "tous les articles"
+
+[latest_eyebrow]
+other = "récents · tous types"
+
+[latest_title]
+other = "Articles récents."
+
+[archive_link]
+other = "archives"
+
+[subscribe_eyebrow]
+other = "s'abonner · pas de spam, pas de tracking"
+
+[subscribe_title]
+other = "Nouveaux articles, directement dans votre boîte mail."
+
+[subscribe_body]
+other = "Environ un email par mois. Se désabonner en un clic."
+
+[rss_feed]
+other = "Flux RSS"
+
+[read_post]
+other = "Lire l'article"
+
+[min]
+other = "min"
+
+# Links
+[links_eyebrow]
+other = "liens · sélection"
+
+[links_hero]
+other = "Des liens qui <span class=\"pixel\">valent le coup</span>."
+
+[links_lede]
+other = "Articles, talks et outils externes sur lesquels je reviens. Filtrer par tag."
+
+[links_count]
+other = "liens"
+
+[links_match]
+other = "correspondance"
+
+[links_any]
+other = "au moins un"
+
+[links_all]
+other = "tous"
+
+# Cursor tooltips
+[tooltip_theme_to_dark]
+other = "que la nuit soit"
+
+[tooltip_theme_to_light]
+other = "que la lumière soit"
+
+[tooltip_lang]
+other = "in English?"
+
+[tooltip_github]
+other = "là où vit le code"
+
+[tooltip_rss]
+other = "pas d'algo, juste des posts"
+
+[tooltip_email]
+other = "la boîte est ouverte"
+
+# Command palette
+[search_label]
+other = "Rechercher"
+
+[tooltip_search]
+other = "ctrl+k, ou un clic"
+
+[palette_placeholder]
+other = "tape pour chercher…"
+
+[palette_empty]
+other = "aucun résultat"
+
+[palette_unavailable]
+other = "index indisponible"
+
+[cmd_theme]
+other = "changer de thème"
+
+[cmd_lang]
+other = "read in English"
+
+# Easter egg console. Chaîne vide = pas de message du tout.
+[egg_message]
+other = "Tiens, quelqu'un qui regarde sous le capot. Ce site tourne sur PouetHugo - https://github.com/GRodolphe/PouetHugo"

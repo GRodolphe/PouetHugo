@@ -1,0 +1,128 @@
+/* Catppuccin Mocha — Chroma syntax highlighting
+   https://github.com/catppuccin/catppuccin
+   Palette: Mocha
+*/
+
+/* ── Base block ─────────────────────────────────────────────────── */
+.chroma {
+  color: #cdd6f4;
+  background-color: #1e1e2e;
+  border-radius: 10px;
+  padding: 20px 24px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 24px 0;
+  -webkit-text-size-adjust: none;
+}
+
+/* Override the theme's generic .post-body pre when Chroma is present */
+.post-body pre.chroma,
+.post-body .highlight pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 20px 24px;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+
+/* ── Error ──────────────────────────────────────────────────────── */
+/* red on dark surface */
+.chroma .err { color: #f38ba8; background-color: #45475a; }
+
+/* ── Line infrastructure ────────────────────────────────────────── */
+.chroma .lnlinks { outline: none; text-decoration: none; color: inherit; }
+.chroma .lntd    { vertical-align: top; padding: 0; margin: 0; border: 0; }
+.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
+.chroma .hl      { background-color: #313244; }
+.chroma .lnt,
+.chroma .ln      { white-space: pre; user-select: none; -webkit-user-select: none;
+                   margin-right: 0.4em; padding: 0 0.4em; color: #585b70; }
+.chroma .line    { display: flex; }
+
+/* ── Keywords — mauve #cba6f7 ───────────────────────────────────── */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kp,
+.chroma .kr,
+.chroma .kt  { color: #cba6f7; }
+
+/* Keyword.Namespace (import / from) — red #f38ba8 */
+.chroma .kn  { color: #f38ba8; }
+
+/* ── Names ──────────────────────────────────────────────────────── */
+.chroma .n   { color: #cdd6f4; }            /* Name (text) */
+.chroma .na  { color: #89b4fa; }            /* Attribute — blue */
+.chroma .nb  { color: #cba6f7; }            /* Builtin — mauve */
+.chroma .nc  { color: #f9e2af; }            /* Class — yellow */
+.chroma .no  { color: #fab387; }            /* Constant — peach */
+.chroma .nd  { color: #f5c2e7; }            /* Decorator — pink */
+.chroma .ni  { color: #cdd6f4; }            /* Entity */
+.chroma .ne  { color: #f9e2af; }            /* Exception — yellow */
+.chroma .nf,
+.chroma .fm  { color: #89b4fa; }            /* Function — blue */
+.chroma .nl  { color: #cdd6f4; }            /* Label */
+.chroma .nn  { color: #f9e2af; }            /* Namespace — yellow */
+.chroma .nt  { color: #f38ba8; }            /* Tag — red */
+.chroma .nv  { color: #cdd6f4; }            /* Variable */
+.chroma .nx  { color: #89b4fa; }            /* Other name — blue */
+
+/* ── Strings — green #a6e3a1 ────────────────────────────────────── */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .s1,
+.chroma .ss  { color: #a6e3a1; }
+
+.chroma .se  { color: #fab387; }            /* String.Escape — peach */
+.chroma .sr  { color: #94e2d5; }            /* String.Regex — teal */
+
+/* ── Numbers — peach #fab387 ────────────────────────────────────── */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo  { color: #fab387; }
+
+/* ── Operators — sky #89dceb ────────────────────────────────────── */
+.chroma .o,
+.chroma .ow  { color: #89dceb; }
+
+/* ── Punctuation ────────────────────────────────────────────────── */
+.chroma .p   { color: #cdd6f4; }
+
+/* ── Comments — overlay0 #6c7086, italic ────────────────────────── */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf { color: #6c7086; }
+
+/* ── Literals ───────────────────────────────────────────────────── */
+.chroma .l   { color: #fab387; }            /* Literal — peach */
+.chroma .ld  { color: #a6e3a1; }            /* LiteralDate — green */
+
+/* ── Generic ────────────────────────────────────────────────────── */
+.chroma .gd  { color: #f38ba8; }            /* Deleted — red */
+.chroma .ge  { }        /* Emph */
+.chroma .gr  { color: #f38ba8; }            /* Error — red */
+.chroma .gh  { color: #89b4fa; font-weight: bold; } /* Heading — blue */
+.chroma .gi  { color: #a6e3a1; }            /* Inserted — green */
+.chroma .go  { color: #6c7086; }            /* Output — overlay0 */
+.chroma .gp  { color: #89b4fa; font-weight: bold; } /* Prompt — blue */
+.chroma .gs  { font-weight: bold; }         /* Strong */
+.chroma .gu  { color: #74c7ec; }            /* Subheading — sapphire */
+.chroma .gt  { color: #f38ba8; }            /* Traceback — red */
+.chroma .gl  { text-decoration: underline; }

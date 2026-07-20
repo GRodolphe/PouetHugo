@@ -1,0 +1,63 @@
+<script>
+(function() {
+  var bar     = document.getElementById('links-filter');
+  var grid    = document.getElementById('links-grid');
+  var countEl = document.getElementById('links-count');
+  if (!bar || !grid) return;
+
+  var word     = {{ i18n "links_count" }};
+  var cards    = Array.from(grid.querySelectorAll('.link-card'));
+  var selected = new Set();
+  var matchMode = 'any';
+
+  function apply() {
+    var visible = 0;
+    cards.forEach(function(card) {
+      var tags = (card.dataset.tags || '').split(',').filter(Boolean);
+      var show;
+      if (selected.size === 0) {
+        show = true;
+      } else if (matchMode === 'all') {
+        show = Array.from(selected).every(function(t) { return tags.indexOf(t) !== -1; });
+      } else {
+        show = tags.some(function(t) { return selected.has(t); });
+      }
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    bar.querySelectorAll('.filter-btn[data-tag]').forEach(function(b) {
+      b.classList.toggle('active', selected.has(b.dataset.tag));
+    });
+    var allBtn = bar.querySelector('.filter-btn[data-tag-all]');
+    if (allBtn) allBtn.classList.toggle('active', selected.size === 0);
+    bar.querySelectorAll('.filter-btn[data-match]').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.match === matchMode);
+    });
+
+    countEl.textContent = visible + ' ' + word;
+  }
+
+  function toggleTag(tag) {
+    if (selected.has(tag)) selected.delete(tag); else selected.add(tag);
+    apply();
+  }
+
+  bar.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    if (btn.hasAttribute('data-tag-all')) { selected.clear(); apply(); return; }
+    if (btn.hasAttribute('data-match'))   { matchMode = btn.dataset.match; apply(); return; }
+    if (btn.dataset.tag)                  { toggleTag(btn.dataset.tag); }
+  });
+
+  grid.addEventListener('click', function(e) {
+    var chip = e.target.closest('.link-tag');
+    if (!chip) return;
+    e.preventDefault();
+    toggleTag(chip.dataset.tag);
+  });
+
+  apply();
+})();
+</script>
