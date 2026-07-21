@@ -174,7 +174,9 @@ quality = 95
 resampleFilter = "Lanczos"
 
 # Taxonomies. The post-type chip (writeup, tool, essay...) is the plain
-# `postKind` frontmatter field, not a taxonomy.
+# `postKind` frontmatter field, not a taxonomy. No sample content uses
+# categories, so it's not declared here - an empty /categories/ page would
+# ship in the sitemap as thin content. Add `category = "categories"` back
+# if you actually use it.
 [taxonomies]
 tag = "tags"
-category = "categories"
