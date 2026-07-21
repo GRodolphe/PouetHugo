@@ -49,7 +49,24 @@
 {{ range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
 {{ end }}
-{{ with .Site.Home.OutputFormats.Get "html" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}
+{{- /* x-default should point at the default-language variant of THIS page,
+      not the homepage - otherwise every page tells crawlers "if you don't
+      know the visitor's language, show the homepage", which is wrong for a
+      specific post. .Site.Languages is sorted by weight, so index 0 is
+      whichever language has weight = 1 (English today), without hardcoding
+      a language code. */ -}}
+{{ $defaultLang := (index .Site.Languages 0).Lang }}
+{{ if eq .Language.Lang $defaultLang }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{ else }}
+  {{ $defaultVariant := "" }}
+  {{ range .Translations }}{{ if eq .Language.Lang $defaultLang }}{{ $defaultVariant = . }}{{ end }}{{ end }}
+  {{ with $defaultVariant }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+  {{ else }}
+<link rel="alternate" hreflang="x-default" href="{{ $.Permalink }}">
+  {{ end }}
+{{ end }}
 {{ $card := partial "og-card.html" . }}
 {{ with $card }}
 <meta property="og:image" content="{{ .Permalink }}">
