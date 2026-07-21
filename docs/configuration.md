@@ -60,6 +60,19 @@ Each `[languages.<code>]` block carries its own `contentDir`, `params` (subtitle
 
 Add/remove menu entries freely; the footer site map ranges over the same menu. See [i18n.md](i18n.md) for adding or removing whole languages.
 
+Any menu item can be hidden without deleting its block by setting `enabled = false` in its params:
+
+```toml
+[[languages.en.menu.main]]
+  name = "CVE"
+  url = "/cves/"
+  weight = 4
+  [languages.en.menu.main.params]
+    enabled = false   # omit or true = shown
+```
+
+Disabled items disappear from both the top nav and the footer. To remove the CVE feature entirely: set its menu item `enabled = false` (or delete the block), then delete `content/en/cves.md`, `content/fr/cves.md`, and `data/cves.yaml`.
+
 The template intentionally keeps the pre-0.158 keys `languageCode`/`languageName` (instead of `locale`/`label`) so the same config builds on Hugo 0.139, which some hosts still pin. Recent Hugo versions print deprecation warnings for them; that is expected. See [deployment.md](deployment.md).
 
 ## Markup

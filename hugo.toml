@@ -79,6 +79,7 @@ github = "your-github"     # footer + about page; remove to hide
       weight = 4
       [languages.en.menu.main.params]
         tooltip = "the paper trail"
+        # enabled = false   # hide this item from nav + footer
     [[languages.en.menu.main]]
       name = "Slides"
       url = "/slides/"
@@ -131,6 +132,7 @@ github = "your-github"     # footer + about page; remove to hide
       weight = 4
       [languages.fr.menu.main.params]
         tooltip = "les preuves"
+        # enabled = false   # masquer cet élément du menu et du pied de page
     [[languages.fr.menu.main]]
       name = "Slides"
       url = "/slides/"
