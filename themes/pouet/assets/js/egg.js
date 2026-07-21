@@ -21,6 +21,6 @@
     '|_|'
   ].join('\n');
 
-  console.log('%c' + banner, 'color:#F14D6C;font-family:monospace;line-height:1.2');
+  console.log('%c' + banner, 'color:#6366F1;font-family:monospace;line-height:1.2');
   console.log('%c' + msg, 'color:#9AA2A8;font-family:monospace');
 })();

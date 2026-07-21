@@ -572,9 +572,9 @@ html.js-motion:not(.nav-gsap) .nav-overlay-links a:nth-child(6) { transition-del
 .term .muted  { color: var(--neutral-400); }
 .term .ok     { color: #6BD49E; }
 .term .warn   { color: #F5CF62; }
-.term .crit   { color: #FF8FA3; font-weight: 600; }
+.term .crit   { color: #A5A7F7; font-weight: 600; }
 .term .path   { color: #9EC7FF; }
-.term .cve    { color: #FF8FA3; }
+.term .cve    { color: #A5A7F7; }
 .term .dim    { opacity: 0.55; }
 .term .head {
   display: flex;

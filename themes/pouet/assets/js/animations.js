@@ -247,7 +247,7 @@
       pctx.clearRect(0, 0, PW, PH);
 
       var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      var lineRGB = '241,77,108';                        // brand pink, both themes
+      var lineRGB = '99,102,241';                        // brand indigo, both themes
       var dotRGB = isDark ? '230,235,240' : '40,45,50';  // subtle dot
 
       // Update positions + wrap edges.
