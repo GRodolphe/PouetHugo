@@ -19,7 +19,7 @@ other = "tous les"
 other = "Tout ce que j'ai <span class=\"pixel\">publié,</span><br>dans un seul flux."
 
 [posts_lede]
-other = "articles entre writeups, recherche et analyses techniques. Filtrer par tag."
+other = "articles, notes et analyses. Filtrer par tag."
 
 [posts]
 other = "articles"
@@ -67,7 +67,7 @@ other = "cve · suivi"
 other = "<span class=\"pixel\">Vulnérabilités</span> connues, suivies."
 
 [cve_lede]
-other = "Un index chronologique des CVE que j'ai recherchées ou rencontrées. Les plus récentes en premier."
+other = "Un index chronologique des CVE suivies. Les plus récentes en premier."
 
 [all_cves]
 other = "tous les CVE"
@@ -123,22 +123,22 @@ other = "Impossible de charger le PDF."
 other = "salut · c'est moi"
 
 [about_hero]
-other = "Je casse du logiciel, <span class=\"pixel\">poliment,</span> et ensuite j'écris dessus."
+other = "Un mot <span class=\"pixel\">sur moi,</span> et ce que j'écris ici."
 
 [about_lede]
-other = "Je suis ingénieur en sécurité applicative et chercheur indépendant. Au quotidien : trouver et corriger des vulnérabilités. En dehors : lire les flux CVE, reproduire des bugs, créer des petits outils et publier des writeups ici."
+other = "Je suis développeur et je rédige ici : des articles, des petits projets à partager, et des notes sur ce que j'apprends."
 
 [about_focus]
-other = "Mon focus, c'est l'atteignabilité - pas juste \"est-ce que cette fonction est vulnérable ?\" mais \"est-ce que quelqu'un peut vraiment y arriver, et avec quelles pré-conditions ?\" L'essentiel du travail intéressant en appsec se situe dans cet écart entre un lint qui se déclenche et un bug qu'un attaquant motivé peut exploiter."
+other = "J'aime comprendre comment les choses fonctionnent vraiment - décortiquer une idée, la saisir, puis écrire ce que j'ai trouvé pour que ce soit utile à quelqu'un d'autre plus tard."
 
 [about_disclosure]
-other = "Je divulgue de manière responsable. Délai de 90 jours par défaut, prolongé sur demande quand le correctif est réel."
+other = "La plupart de mes textes commencent comme des notes pour moi-même, puis sont mis au propre pour être partagés."
 
 [about_writes]
 other = "Ce que j'écris"
 
 [about_writes_body]
-other = "Des writeups de vulnérabilités (avec repros), de la recherche sur le comportement des classes de bugs dans la nature, des lancements d'outils et parfois un essai sur le fonctionnement réel de ce métier."
+other = "Des articles et tutoriels, des notes sur les outils que j'utilise, quelques comptes-rendus de projets, et parfois un essai sur le métier."
 
 [about_contact]
 other = "Contact"
@@ -147,10 +147,10 @@ other = "Contact"
 other = "pour tout."
 
 [about_based]
-other = "France"
+other = "À distance"
 
 [about_focus_label]
-other = "AppSec"
+other = "Écriture"
 
 # Footer
 [footer_site]
@@ -163,26 +163,26 @@ other = "Ailleurs"
 other = "Contact"
 
 [footer_tagline]
-other = "Recherche en sécurité applicative, writeups et petits outils."
+other = "Articles, projets et notes."
 
 [footer_disclosure]
-other = "Divulgation responsable bienvenue."
+other = "N'hésitez pas à dire bonjour."
 
 [footer_built]
-other = "construit avec hugo et des accents rouges discrets"
+other = "construit avec hugo"
 
 # Homepage
 [hero_status]
-other = "en ce moment · lecture de CVE avec un café"
+other = "en ce moment · j'écris quelque chose"
 
 [hero_eyebrow]
-other = "sécurité applicative · recherche indépendante"
+other = "écriture · projets · notes"
 
 [hero_title]
-other = "Code atteignable,<br><span class=\"pixel\">chemins</span> exploitables,<br><span class=\"serif\">et les notes que je prends en chemin.</span>"
+other = "Ce que je <span class=\"pixel\">fabrique,</span><br>ce que j'<span class=\"pixel\">apprends,</span><br><span class=\"serif\">et les notes que je prends en chemin.</span>"
 
 [hero_body]
-other = "Le carnet d'un ingénieur appsec. Ici, j'écris sur les vulnérabilités que je trouve, je publie des petits outils, et je réfléchis à voix haute sur comment le logiciel moderne casse vraiment."
+other = "Un carnet pour l'écriture technique. J'y publie des articles, partage des petits projets, et réfléchis à voix haute à ce sur quoi je travaille."
 
 [hero_cta_posts]
 other = "Lire les articles récents"

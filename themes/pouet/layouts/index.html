@@ -23,14 +23,14 @@
   <section class="term" aria-label="terminal" data-animate="term">
     <div class="head">
       <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span style="margin-left:8px">~/research/{{ now.Year }} - zsh</span>
+      <span style="margin-left:8px">~/{{ now.Year }} - zsh</span>
     </div>
-    <div data-animate="term-line"><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@lab</span> <span class="muted">~</span> <span class="muted">$</span> cat recent.log</div>
+    <div data-animate="term-line"><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@local</span> <span class="muted">~</span> <span class="muted">$</span> cat recent.log</div>
     <div data-animate="term-line"><span class="muted">#</span> <span class="dim">last entries &middot; press enter to open</span></div>
     {{ range first 4 (where .Site.RegularPages "Section" "posts") }}
     <div data-animate="term-line">{{ .Date.Format "2006.01.02" }}  {{ with .Params.tags }}{{ with index . 0 }}<span class="warn">{{ upper . }}</span>{{ end }}{{ end }}  {{ with .Params.cve }}<span class="cve">{{ . }}</span>{{ end }}  {{ .Title | truncate 40 }}  <span class="path">{{ .RelPermalink }}</span></div>
     {{ end }}
-    <div><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@lab</span> <span class="muted">~</span> <span class="muted">$</span> <span class="cursor"></span></div>
+    <div><span class="prompt">{{ .Site.Params.author.handle | default "me" }}@local</span> <span class="muted">~</span> <span class="muted">$</span> <span class="cursor"></span></div>
   </section>
 
   <!-- Featured post (first post) -->
