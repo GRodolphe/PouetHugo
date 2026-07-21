@@ -22,6 +22,24 @@
 <link rel="stylesheet" href="{{ $tokens.RelPermalink }}">
 <link rel="stylesheet" href="{{ $site.RelPermalink }}">
 <link rel="stylesheet" href="{{ $syntax.RelPermalink }}">
+{{ with .Site.Params.brandColor }}{{ $c := . | safeCSS }}
+<style>
+:root{
+  --brand-red: {{ $c }};
+  --brand-red-deep: color-mix(in srgb, {{ $c }}, black 4%);
+  --brand-red-ink: color-mix(in srgb, {{ $c }}, black 18%);
+  --brand-red-soft: color-mix(in srgb, {{ $c }}, white 88%);
+  --shadow-focus: 0 0 0 3px color-mix(in srgb, {{ $c }}, transparent 75%);
+}
+[data-theme="dark"]{
+  --brand-red: color-mix(in srgb, {{ $c }}, white 25%);
+  --brand-red-deep: color-mix(in srgb, {{ $c }}, white 20%);
+  --brand-red-ink: color-mix(in srgb, {{ $c }}, white 42%);
+  --brand-red-soft: color-mix(in srgb, {{ $c }}, transparent 85%);
+  --shadow-focus: 0 0 0 3px color-mix(in srgb, {{ $c }}, transparent 70%);
+}
+</style>
+{{ end }}
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
 {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
@@ -42,15 +60,5 @@
 {{ if .OutputFormats.Get "rss" }}
 {{ with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
-{{ end }}
-{{ end }}
-{{ with .Site.Params.measuredSiteId }}
-{{ if hugo.IsProduction }}
-<script
-  data-site-id="{{ . }}"
-  src="https://www.measured.site/js/script.js"
-  data-api-url="https://www.measured.site/api/session"
-  defer
-></script>
 {{ end }}
 {{ end }}

@@ -4,7 +4,7 @@
 
 Every color, radius, and spacing step is a CSS custom property on `:root`, with a dark-mode override block keyed off `[data-theme="dark"]`. The layers:
 
-- **Brand**: `--brand-red` (#F14D6C) and its deep/ink/soft variants. Change these four and the whole site follows - chips, links, buttons, the wipe, the logo accent.
+- **Brand**: `--brand-red` (#6366F1, indigo) and its deep/ink/soft variants. Change these four and the CSS UI follows - chips, links, buttons, the wipe. To retint without editing CSS, set `brandColor` in `hugo.toml` (see [configuration.md](configuration.md)); the shades and dark-mode variant are derived from it. The logo (`static/img/logo.svg`), mermaid diagrams (`mermaid-init.js`), and OG cards (`og-card.html`) carry the color as static values - edit those files to match a custom brand.
 - **Neutrals**: an 11-step gray ramp (`--neutral-050` ... `--neutral-900`).
 - **Semantic surfaces and text**: `--bg-app`, `--bg-paper`, `--fg-1`, `--fg-2`, `--fg-accent`... Layouts and `site.css` only use semantic tokens, so retheming means editing tokens, not hunting selectors.
 - **Signal colors, radii, spacing**: `--ok`/`--warn`/`--danger`/`--info`, `--r-*`, 4-pt spacing scale.

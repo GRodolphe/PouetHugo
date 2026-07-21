@@ -19,7 +19,7 @@ other = "all"
 other = "Everything I've <span class=\"pixel\">published,</span><br>in one feed."
 
 [posts_lede]
-other = "posts across writeups, research, and technical deep-dives. Filter by tag."
+other = "posts across articles, notes, and deep-dives. Filter by tag."
 
 [posts]
 other = "posts"
@@ -67,7 +67,7 @@ other = "cve · tracker"
 other = "Known <span class=\"pixel\">vulnerabilities</span>, tracked."
 
 [cve_lede]
-other = "A chronological index of CVEs I've researched or encountered. Sorted newest first."
+other = "A chronological index of tracked CVEs. Sorted newest first."
 
 [all_cves]
 other = "all CVEs"
@@ -123,22 +123,22 @@ other = "Failed to load PDF."
 other = "hi · this is me"
 
 [about_hero]
-other = "I break software, <span class=\"pixel\">politely,</span> and then I write it up."
+other = "A bit <span class=\"pixel\">about me,</span> and what I write here."
 
 [about_lede]
-other = "I'm an application-security engineer and independent researcher. Day job: finding and fixing vulnerabilities. Off the clock: reading CVE feeds, reproducing bugs, building small tools, and publishing writeups here."
+other = "I'm a developer and writer. This is where I publish articles, share small projects, and keep notes on what I'm learning."
 
 [about_focus]
-other = "My focus is reachability - not just \"is this function vulnerable?\" but \"can anyone actually get there, and with what pre-conditions?\" Most of the interesting work in appsec lives in that gap between a lint rule firing and a bug a motivated attacker can land."
+other = "I like understanding how things actually work - taking an idea apart, figuring it out, and writing up what I found so it's useful to someone else later."
 
 [about_disclosure]
-other = "I disclose responsibly. 90-day timeline by default, extended on request when the fix is real."
+other = "Most of what I publish starts as a note to myself, then gets cleaned up enough to share."
 
 [about_writes]
 other = "What I write about"
 
 [about_writes_body]
-other = "Vuln writeups (with repros), research on how classes of bugs behave in the wild, tool launches, and the occasional essay about how this craft actually works."
+other = "Articles and tutorials, notes on the tools I use, the occasional project write-up, and short essays about the craft."
 
 [about_contact]
 other = "Contact"
@@ -147,10 +147,10 @@ other = "Contact"
 other = "for anything."
 
 [about_based]
-other = "France"
+other = "Remote"
 
 [about_focus_label]
-other = "AppSec"
+other = "Writing"
 
 # Footer
 [footer_site]
@@ -163,26 +163,26 @@ other = "Elsewhere"
 other = "Contact"
 
 [footer_tagline]
-other = "Application security research, writeups, and small tools."
+other = "Articles, projects, and notes."
 
 [footer_disclosure]
-other = "Responsible disclosure welcome."
+other = "Say hello anytime."
 
 [footer_built]
-other = "built with hugo and quiet red accents"
+other = "built with hugo"
 
 # Homepage
 [hero_status]
-other = "currently · reading CVEs with coffee"
+other = "currently · writing something new"
 
 [hero_eyebrow]
-other = "application security · independent research"
+other = "writing · projects · notes"
 
 [hero_title]
-other = "Reachable code,<br><span class=\"pixel\">exploitable</span> paths,<br><span class=\"serif\">and the notes I take along the way.</span>"
+other = "The things I <span class=\"pixel\">make,</span><br>the things I <span class=\"pixel\">learn,</span><br><span class=\"serif\">and the notes I take along the way.</span>"
 
 [hero_body]
-other = "An appsec engineer's notebook. This is where I write up vulnerabilities I've found, publish small tools, and think out loud about how modern software actually breaks."
+other = "A notebook for technical writing. Here I publish articles, share small projects, and think out loud about what I'm working on."
 
 [hero_cta_posts]
 other = "Read recent posts"

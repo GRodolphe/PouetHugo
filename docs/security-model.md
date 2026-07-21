@@ -25,7 +25,6 @@ What a built site talks to at runtime, and why. This is the complete outbound li
 |---|---|---|
 | `fonts.googleapis.com`, `fonts.gstatic.com` | Web fonts | Every page |
 | `cdn.jsdelivr.net` | mermaid (diagrams) and pdf.js (slides), at pinned versions | Only on pages that contain a diagram or a slide deck |
-| `www.measured.site` | Privacy-friendly analytics | Only if the user sets `measuredSiteId`, and only in production builds |
 
 Build-time interfaces: the Hugo binary, the npm registry (via `package-lock.json`) for the optional `hugo-extended` and `cross-spawn` build helpers, and GitHub Actions (pinned by commit SHA). Self-hosting the two CDN libraries is documented in [features.md](features.md) and removes the jsdelivr dependency entirely.
 

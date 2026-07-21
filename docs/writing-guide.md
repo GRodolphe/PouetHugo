@@ -1,6 +1,6 @@
 # Writing guide
 
-The conventions the sample content follows. They come from the blog this template was extracted from; adopt them, adapt them, or delete this file. If you use an AI assistant for drafting, this file also works as its style instructions (the source blog keeps it as `CLAUDE.md` at the repo root for that reason).
+The conventions the sample content follows. They come from the blog this template was extracted from; adopt them, adapt them, or delete this file. If you use an AI assistant for drafting, this file also works as its style instructions.
 
 Posts target security practitioners - people who already know what XSS, CSRF, and postMessage are. Write for that audience: don't explain the basics, do explain the specifics.
 

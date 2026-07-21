@@ -26,9 +26,8 @@ Netlify, Vercel, an nginx box: build command `hugo --gc --minify`, publish `publ
 
 ## The Hugo version-skew caveat
 
-The template is built to work across a wide Hugo range (0.139 to current), and CI builds both ends on every push. Two things exist specifically for that:
+The template is built to work across a wide Hugo range (0.139 to current), and CI builds both ends on every push. One thing exists specifically for that:
 
-- **Duplicate layouts**: the custom page layouts exist as both `layouts/page/*.html` and `layouts/_default/*.html` because template lookup for single pages changed across Hugo versions - older versions resolve `_default/`, newer ones prefer `page/`. If you edit one, edit its twin (they are line-for-line identical apart from that lookup difference).
 - **Deprecation warnings on recent Hugo**: `languageCode`/`languageName` and a few template functions used by the layouts were deprecated after 0.156 but still work. The warnings are expected; the modern replacements don't exist on 0.139, and compatibility wins until the old forms are actually removed.
 
-If you only ever build with a recent Hugo, you can collapse the duplicate layouts and modernize the config keys - nothing else depends on them.
+If you only ever build with a recent Hugo, you can modernize the config keys - nothing else depends on them.

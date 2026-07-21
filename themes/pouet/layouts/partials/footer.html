@@ -10,9 +10,9 @@
     <div>
       <h4>{{ i18n "footer_site" }}</h4>
       <div class="footer-list">
-        {{ range .Site.Menus.main }}
+        {{ range .Site.Menus.main }}{{ if ne .Params.enabled false }}
         <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
-        {{ end }}
+        {{ end }}{{ end }}
       </div>
     </div>
     <div>

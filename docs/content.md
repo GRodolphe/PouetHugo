@@ -26,7 +26,7 @@ The archetype (`themes/pouet/archetypes/default.md`) pre-fills everything:
 | `description` | string | List blurbs, meta description, search index |
 | `tags` | list | Chips on lists, `/tags/` taxonomy pages, palette search |
 | `postKind` | string | Post-type chip: `writeup`, `tool`, `essay`, `guide`... free-form |
-| `cve` | string | Red CVE chip next to the title and in the home terminal |
+| `cve` | string | CVE chip (brand color) next to the title and in the home terminal |
 | `noindex` | bool | Adds `<meta name="robots" content="noindex, nofollow">`, excludes from the search index |
 | `ogimage` | string | Filename of a bundle image to use as the social card instead of the generated one |
 

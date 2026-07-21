@@ -1,6 +1,0 @@
-{{/* Thin wrapper. Hugo 0.139 (production build via npm) only resolves
-layouts/page/links.html; Hugo 0.146+ (system hugo server) only resolves
-layouts/_default/links.html - so the same wrapper exists at both paths and
-all real content lives in partials/links/. Edit the partials, not this file. */}}
-{{ define "main" }}{{ partial "links/main.html" . }}{{ end }}
-{{ define "scripts" }}{{ partial "links/scripts.html" . }}{{ end }}

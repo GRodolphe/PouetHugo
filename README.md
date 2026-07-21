@@ -9,7 +9,7 @@
 
 A bilingual (EN + FR) Hugo blog template for technical writing and security research. Extracted from a real production blog, genericized, and documented end to end.
 
-Dark terminal aesthetic, quiet red accents, and a feature set aimed at people who write about code: annotated code blocks, mermaid diagrams, a CVE tracker, an inline PDF slides viewer, and a Ctrl+K command palette.
+Dark terminal aesthetic, a configurable accent color (indigo by default), and a feature set aimed at people who write about code: annotated code blocks, mermaid diagrams, a CVE tracker, an inline PDF slides viewer, and a Ctrl+K command palette.
 
 | Dark | Light |
 |---|---|

@@ -91,10 +91,6 @@ Emits `WebSite` on the home pages, `BlogPosting` (with author, keywords, and the
 - Canonical URLs, `hreflang` alternates, `x-default`, OpenGraph tags, `robots.txt`, sitemap, custom 404 (per language).
 - `noindex: true` frontmatter opts a page out of indexing and the search index.
 
-## Analytics
-
-Off by default. Setting `params.measuredSiteId` loads the measured.site script in production builds only (`hugo.IsProduction`), so local dev never ships it.
-
 ## External network calls, summarized
 
-For CSP writers and the privacy-conscious, the full list of runtime origins: Google Fonts (stylesheet + fonts), jsdelivr (mermaid, pdf.js - only on pages that use them), and measured.site (only if you opt in). GSAP is bundled, not fetched.
+For CSP writers and the privacy-conscious, the full list of runtime origins: Google Fonts (stylesheet + fonts), jsdelivr (mermaid, pdf.js - only on pages that use them). GSAP is bundled, not fetched.

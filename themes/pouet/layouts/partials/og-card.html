@@ -47,7 +47,7 @@
     {{- $fontReg := resources.Get "fonts/JetBrainsMono-Regular.ttf" | default $font -}}
     {{- $out = $base.Filter
         (images.Text $text (dict "font" $font "color" "#F2F4F5" "size" 60 "x" 84 "y" 140 "linespacing" 16))
-        (images.Text $meta (dict "font" $font "color" "#FF6B84" "size" 30 "x" 84 "y" 500))
+        (images.Text $meta (dict "font" $font "color" "#8A8CF4" "size" 30 "x" 84 "y" 500))
         (images.Text $host (dict "font" $fontReg "color" "#9AA2A8" "size" 26 "x" 84 "y" 560)) -}}
   {{- end -}}
 {{- end -}}
