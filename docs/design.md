@@ -22,8 +22,8 @@ The hero and about-page copy was already i18n strings; it was de-personalized in
 ## Deliberate choices
 
 - **`postKind`, not `kind`.** The source blog used `kind` frontmatter, which Hugo reserved in 0.144 - it hard-errors on modern Hugo. The rename is the one intentional behavioral divergence from the source.
-- **Security-blog flavor kept.** The CVE tracker, disclosure footer line, and appsec placeholder copy stay: they are the template's niche. Everything is editable text or deletable pages for people who want a plain tech blog.
-- **Dual layouts kept** (`layouts/page/` + `layouts/_default/`) for the 0.139-to-current compatibility window, along with the pre-0.158 language config keys. See [deployment.md](deployment.md).
+- **Neutral, brandable defaults.** The hero, about, and footer copy ship as generic technical-writer placeholder text (i18n strings, EN + FR). The CVE tracker remains as an optional feature: any menu item can be hidden with `enabled = false`, and deleting `content/*/cves.md` + `data/cves.yaml` removes it entirely.
+- **Single layout set** (`layouts/_default/`). The former `layouts/page/` duplicates were removed - unused on current Hugo, and on the oldest supported Hugo (0.139.4) they shadowed the maintained `_default/` layouts with stale hardcoded copy (rendering English on the French about page). Removal was verified to produce byte-identical output on both 0.139.4 and current Hugo. The pre-0.158 language config keys (`languageCode`/`languageName`) are still kept for the 0.139-to-current compatibility window. See [deployment.md](deployment.md).
 - **JS globals renamed** (`__pouet*`, `pouetFuzzy`, `pouetIndex`) - purely cosmetic consistency; the code is the source blog's.
 - **No CMS, no comments, no external search.** The palette index is built by Hugo; adding a service is left to the user.
 - **Sample content is disposable by design**: two posts per language exercising every feature, two famous public CVEs as tracker examples, one generated placeholder PDF. Deleting all of it is step one of adoption.
