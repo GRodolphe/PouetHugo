@@ -24,6 +24,14 @@ A ready-made workflow ships at `.github/workflows/pages.yml`, trigger set to `wo
 
 Netlify, Vercel, an nginx box: build command `hugo --gc --minify`, publish `public/`. Set `baseURL` (or pass `-b`) to the canonical URL.
 
+## Per-page last-modified dates
+
+`enableGitInfo = true` + the `[frontmatter]` `lastmod` cascade in `hugo.toml` make `dateModified` (JSON-LD) and each URL's `<lastmod>` (sitemap) reflect the page's actual last git-commit date - falling back to `date` frontmatter when git info isn't available, so this can't make things worse, only better where it works:
+
+- **GitHub Actions** (`ci.yml`, `pages.yml`): both checkout steps use `fetch-depth: 0` (full history) - required, since the default shallow clone only sees one commit and would give every page the *same* wrong date.
+- **Cloudflare Pages**: performs a full git clone for its own builds (not via these workflows), so no extra config is needed there - but if you change that assumption in your Cloudflare project settings, verify `git log` still resolves full history from the build container.
+- **Any other CI**: make sure your checkout step fetches full history, not just the latest commit.
+
 ## The Hugo version-skew caveat
 
 The template is built to work across a wide Hugo range (0.139 to current), and CI builds both ends on every push. One thing exists specifically for that:

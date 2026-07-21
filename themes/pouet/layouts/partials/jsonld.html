@@ -1,6 +1,21 @@
-{{- /* JSON-LD: WebSite on home, BlogPosting on posts, Person on about.
-      Other pages: nothing. */ -}}
+{{- /* JSON-LD: WebSite on home, BlogPosting (+ BreadcrumbList) on posts,
+      Person on about. Other pages: nothing.
+
+      Author identity (name/url/sameAs) is built once here since both the
+      BlogPosting's "author" and the About page's own Person share it.
+      url/sameAs are only added when the matching param is actually set -
+      params.author.website/github/linkedin are all optional (docs say
+      "remove to hide"), and printf-ing an unset value used to render the
+      literal string "https://%!s(<nil>)" into the JSON-LD. */ -}}
 {{- $ld := dict -}}
+{{- $authorURL := "" -}}
+{{- with .Site.Params.author.website -}}{{- $authorURL = printf "https://%s" . -}}{{- end -}}
+{{- $sameAs := slice -}}
+{{- with .Site.Params.author.github -}}{{- $sameAs = $sameAs | append (printf "https://github.com/%s" .) -}}{{- end -}}
+{{- with .Site.Params.author.linkedin -}}{{- $sameAs = $sameAs | append (printf "https://www.linkedin.com/in/%s/" .) -}}{{- end -}}
+{{- $person := dict "@type" "Person" "name" .Site.Params.author.name -}}
+{{- with $authorURL -}}{{- $person = merge $person (dict "url" .) -}}{{- end -}}
+{{- if gt (len $sameAs) 0 -}}{{- $person = merge $person (dict "sameAs" $sameAs) -}}{{- end -}}
 {{- if .IsHome -}}
   {{- $ld = dict
       "@context" "https://schema.org"
@@ -15,22 +30,29 @@
       "@type" "BlogPosting"
       "headline" .Title
       "url" .Permalink
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
       "datePublished" (.Date.Format "2006-01-02")
       "dateModified" (.Lastmod.Format "2006-01-02")
       "inLanguage" .Site.Language.Lang
       "description" (or .Description (.Summary | plainify | truncate 160))
       "keywords" (delimit (.Params.tags | default slice) ", ")
-      "author" (dict "@type" "Person" "name" .Site.Params.author.name "url" (printf "https://%s" .Site.Params.author.website)) -}}
+      "wordCount" (countwords .Content)
+      "author" $person
+      "publisher" (dict "@type" "Organization" "name" .Site.Title "url" .Site.BaseURL) -}}
+  {{- with .Params.postKind -}}{{- $ld = merge $ld (dict "articleSection" .) -}}{{- end -}}
   {{- $card := partial "og-card.html" . -}}
   {{- with $card -}}{{- $ld = merge $ld (dict "image" .Permalink) -}}{{- end -}}
 {{- else if in (slice "/about/" "/fr/about/") .RelPermalink -}}
-  {{- $ld = dict
-      "@context" "https://schema.org"
-      "@type" "Person"
-      "name" .Site.Params.author.name
-      "url" (printf "https://%s" .Site.Params.author.website)
-      "sameAs" (slice (printf "https://github.com/%s" .Site.Params.author.github)) -}}
+  {{- $ld = merge (dict "@context" "https://schema.org") $person -}}
 {{- end -}}
 {{- with $ld -}}
 <script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end -}}
+{{- if and .IsPage (eq .Section "posts") -}}
+  {{- $crumbs := slice
+      (dict "@type" "ListItem" "position" 1 "name" .Site.Title "item" .Site.Home.Permalink)
+      (dict "@type" "ListItem" "position" 2 "name" .Parent.Title "item" .Parent.Permalink)
+      (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink) -}}
+  {{- $breadcrumbs := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $crumbs -}}
+<script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
 {{- end -}}

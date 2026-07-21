@@ -1,5 +1,6 @@
 ---
 title: "Liens"
+description: "Articles, talks et outils externes sur lesquels je reviens. Filtrer par tag."
 layout: "links"
 # Liens sortants. Chaque entrée supporte : title, url, description,
 # tags (pour les filtres) et date (pour le tri).

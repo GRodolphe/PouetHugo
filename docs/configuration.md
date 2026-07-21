@@ -11,6 +11,7 @@ Everything lives in `hugo.toml`. This page lists each key and where it surfaces 
 | `theme` | Must stay `pouet` (the theme directory name) |
 | `defaultContentLanguage` | Which language lives at `/` (the other gets a prefix, e.g. `/fr/`) |
 | `enableRobotsTXT` | Serves the theme's `robots.txt` |
+| `enableGitInfo` + `[frontmatter] lastmod` | Per-page `dateModified`/sitemap `lastmod` from the page's actual git-commit date, falling back to `date` frontmatter. See [deployment.md](deployment.md) for the full-clone requirement in CI |
 
 ## Outputs
 
@@ -92,7 +93,7 @@ Syntax highlighting emits CSS classes styled by the theme's `syntax.css` (Catppu
 
 ## Taxonomies
 
-`tags` and `categories`. The post-type chip (writeup, tool, essay...) is the plain `postKind` frontmatter field, not a taxonomy - it's a label, not a browsable index. Note: it's `postKind` rather than `kind` because `kind` is a reserved frontmatter key in Hugo ≥ 0.144.
+`tags` only by default - a `categories` taxonomy isn't declared since no sample content uses it and an empty term-list page is thin content that still ships in the sitemap; add `category = "categories"` under `[taxonomies]` if you want it. The post-type chip (writeup, tool, essay...) is the plain `postKind` frontmatter field, not a taxonomy - it's a label, not a browsable index. Note: it's `postKind` rather than `kind` because `kind` is a reserved frontmatter key in Hugo ≥ 0.144.
 
 ## i18n strings
 
