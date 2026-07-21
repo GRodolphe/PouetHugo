@@ -1,5 +1,6 @@
 ---
 title: "Links"
+description: "External articles, talks, and tools I keep coming back to. Filter by tag."
 layout: "links"
 # Curated outbound links. Each entry supports: title, url, description,
 # tags (used by the filter chips), and date (used for sorting).
