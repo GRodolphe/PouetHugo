@@ -62,13 +62,3 @@
 <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
 {{ end }}
 {{ end }}
-{{ with .Site.Params.measuredSiteId }}
-{{ if hugo.IsProduction }}
-<script
-  data-site-id="{{ . }}"
-  src="https://www.measured.site/js/script.js"
-  data-api-url="https://www.measured.site/api/session"
-  defer
-></script>
-{{ end }}
-{{ end }}

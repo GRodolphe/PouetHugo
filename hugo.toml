@@ -30,9 +30,6 @@ brandSuffix = "!"
 # Unset = the built-in indigo default. Any CSS color works; the deep/ink/soft
 # shades and the dark-mode variant are derived automatically via color-mix.
 # brandColor = "#6366F1"
-# Optional privacy-friendly analytics (measured.site). Set your site id
-# to load the script in production builds; leave it out to ship none.
-# measuredSiteId = "site_xxxxxxxxxxxxxxxx"
 
 [params.author]
 name = "Jane Doe"          # <meta name="author"> + archetype default

@@ -31,7 +31,6 @@ The `json` output is the search index (`/index.json`, one per language) consumed
 | `favicon` | Favicon path |
 | `brandSuffix` | The accent glyph after the brand name (default `!`) |
 | `brandColor` | Optional. Base/brand color for the whole UI. Unset = built-in indigo `#6366F1`. Any CSS color; deep/ink/soft and dark variants are auto-derived. Retints CSS only - logo/diagram/OG-card assets are static (see [theming.md](theming.md)) |
-| `measuredSiteId` | Optional. Set a [measured.site](https://www.measured.site/) id to load its script in production builds only. Absent = no analytics at all |
 
 ## `[params.author]`
 

@@ -13,8 +13,7 @@ PouetHugo is extracted from a production security blog (bilingual EN/FR, Cloudfl
 | Brand mark text in nav/footer | `title` + `params.brandSuffix` |
 | Logo/favicon/portrait image paths | `params.logo`, `params.favicon`, `params.author.avatar` |
 | LinkedIn link in the about layout | `params.author.linkedin` (hidden when absent) |
-| Terminal prompt (`user@lab`) on the home page | `params.author.handle` |
-| Analytics script + site id in `head.html` | `params.measuredSiteId`, absent by default |
+| Terminal prompt (`user@local`) on the home page | `params.author.handle` |
 | Console easter-egg message (had email + GitHub URL in JS) | `egg_message` i18n string, injected via a meta tag |
 | Author name in the archetype | `site.Params.author.name` |
 
