@@ -38,7 +38,7 @@ The `json` output is the search index (`/index.json`, one per language) consumed
 | Key | Effect |
 |---|---|
 | `name` | `<meta name="author">`, archetype default byline |
-| `handle` | Terminal prompt on the home page (`handle@lab`), copyright line |
+| `handle` | Terminal prompt on the home page (`handle@local`), copyright line |
 | `email` | Footer contact + about page |
 | `github` | Footer "elsewhere" link + about page. Remove the key to hide both |
 | `linkedin` | About page link (LinkedIn slug, not URL). Remove to hide |
