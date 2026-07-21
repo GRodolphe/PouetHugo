@@ -11,6 +11,7 @@ Everything lives in `hugo.toml`. This page lists each key and where it surfaces 
 | `theme` | Must stay `pouet` (the theme directory name) |
 | `defaultContentLanguage` | Which language lives at `/` (the other gets a prefix, e.g. `/fr/`) |
 | `enableRobotsTXT` | Serves the theme's `robots.txt` |
+| `enableGitInfo` + `[frontmatter] lastmod` | Per-page `dateModified`/sitemap `lastmod` from the page's actual git-commit date, falling back to `date` frontmatter. See [deployment.md](deployment.md) for the full-clone requirement in CI |
 
 ## Outputs
 

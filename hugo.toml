@@ -11,6 +11,13 @@ theme = 'pouet'
 defaultContentLanguage = 'en'
 enableRobotsTXT = true
 
+# Per-page last-modified date: prefer explicit `lastmod` frontmatter, else
+# the page's last git-commit date, else fall back to `date`. Needs a full
+# git clone to give correct per-page dates - see docs/deployment.md.
+enableGitInfo = true
+[frontmatter]
+lastmod = ["lastmod", ":git", "date"]
+
 # Home page outputs: HTML + RSS (defaults) + JSON search index
 # consumed by the command palette and link-preview popovers.
 [outputs]
