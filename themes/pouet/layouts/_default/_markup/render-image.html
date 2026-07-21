@@ -1,1 +1,18 @@
-<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if strings.Contains .Destination "memes/" }} class="meme"{{ end }} loading="lazy">
+{{- /* width/height on local raster resources let the browser reserve
+      layout space before the image loads (CLS fix) - combined with
+      site.css's `img { max-width:100%; height:auto }`, browsers derive the
+      right aspect ratio from these attributes instead of collapsing to 0
+      height until load. SVGs are skipped: their own viewBox already gives
+      the browser an intrinsic aspect ratio, and Hugo's image processing
+      doesn't reliably report Width/Height for them. Remote (http/https)
+      destinations aren't page resources, so there's nothing to look up. */ -}}
+{{- $dims := "" -}}
+{{- if not (strings.HasPrefix .Destination "http") -}}
+  {{- $resource := .Page.Resources.GetMatch .Destination -}}
+  {{- with $resource -}}
+    {{- if ne .MediaType.SubType "svg" -}}
+      {{- $dims = printf " width=\"%d\" height=\"%d\"" $resource.Width $resource.Height -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if strings.Contains .Destination "memes/" }} class="meme"{{ end }}{{ $dims | safeHTMLAttr }} loading="lazy">
