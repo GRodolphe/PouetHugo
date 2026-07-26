@@ -32,6 +32,6 @@
   </div>
   <div class="footer-bottom">
     <span>&copy; {{ now.Year }} {{ .Site.Params.author.handle | default .Site.Params.author.name }}</span>
-    <span>{{ i18n "footer_built" }}</span>
+    <span>{{ i18n "footer_built" }} · <a href="https://github.com/GRodolphe/PouetHugo" data-tooltip="{{ i18n "tooltip_template" }}">{{ i18n "footer_template" }}</a></span>
   </div>
 </footer>

@@ -171,6 +171,9 @@ other = "N'hésitez pas à dire bonjour."
 [footer_built]
 other = "construit avec hugo"
 
+[footer_template]
+other = "template pouethugo"
+
 # Homepage
 [hero_status]
 other = "en ce moment · j'écris quelque chose"
@@ -260,6 +263,9 @@ other = "in English?"
 
 [tooltip_github]
 other = "là où vit le code"
+
+[tooltip_template]
+other = "récupérez ce template sur github"
 
 [tooltip_rss]
 other = "pas d'algo, juste des posts"
