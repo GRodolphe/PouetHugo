@@ -3,7 +3,7 @@
     "private": true,
     "dependencies": {
         "cross-spawn": "7.0.6",
-        "hugo-extended": "0.164.0"
+        "hugo-extended": "0.166.0"
     },
     "overrides": {
         "adm-zip": "^0.6.0"
